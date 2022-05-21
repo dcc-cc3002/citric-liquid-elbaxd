@@ -10,7 +10,7 @@ import java.util.Random;
  * @version 1.1.222804
  * @since 1.0
  */
-public class Player {
+public class Player extends AbstractUnit {
   private final Random random;
   private final String name;
   private final int maxHp;
