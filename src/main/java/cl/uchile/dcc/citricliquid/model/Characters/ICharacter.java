@@ -7,7 +7,7 @@ public interface ICharacter {
     /**
      * Increases this player's star count by an amount.
      */
-    public void increaseStarsBy(int amount);
+    void increaseStarsBy(int amount);
 
     /**
      * Returns this character's star count.

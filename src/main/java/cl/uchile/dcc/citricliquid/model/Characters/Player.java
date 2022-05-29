@@ -12,14 +12,8 @@ import java.util.Random;
  */
 public class Player extends AbstractCharacter {
   private final Random random;
-  private String name;
-  private int maxHp;
-  private int atk;
-  private int def;
-  private int evd;
   private int normaLevel;
   private int stars;
-  private int currentHp;
 
   /**
    * Creates a new character.
@@ -50,6 +44,7 @@ public class Player extends AbstractCharacter {
   /**
    * Increases this player's star count by an amount.
    */
+  @Override
   public void increaseStarsBy(final int amount) {
     stars += amount;
   }
@@ -57,6 +52,7 @@ public class Player extends AbstractCharacter {
   /**
    * Returns this player's star count.
    */
+  @Override
   public int getStars() {
     return stars;
   }
@@ -74,6 +70,7 @@ public class Player extends AbstractCharacter {
    * <p>The random number generator is used for taking non-deterministic decisions, this method is
    * declared to avoid non-deterministic behaviour while testing the code.
    */
+  @Override
   public void setSeed(final long seed) {
     random.setSeed(seed);
   }
@@ -81,6 +78,7 @@ public class Player extends AbstractCharacter {
   /**
    * Returns the character's name.
    */
+  @Override
   public String getName() {
     return name;
   }
@@ -88,6 +86,7 @@ public class Player extends AbstractCharacter {
   /**
    * Returns the character's max hit points.
    */
+  @Override
   public int getMaxHp() {
     return maxHp;
   }
@@ -95,6 +94,7 @@ public class Player extends AbstractCharacter {
   /**
    * Returns the current character's attack points.
    */
+  @Override
   public int getAtk() {
     return atk;
   }
@@ -102,6 +102,7 @@ public class Player extends AbstractCharacter {
   /**
    * Returns the current character's defense points.
    */
+  @Override
   public int getDef() {
     return def;
   }
@@ -109,6 +110,7 @@ public class Player extends AbstractCharacter {
   /**
    * Returns the current character's evasion points.
    */
+  @Override
   public int getEvd() {
     return evd;
   }
@@ -130,6 +132,7 @@ public class Player extends AbstractCharacter {
   /**
    * Returns the current hit points of the character.
    */
+  @Override
   public int getCurrentHp() {
     return currentHp;
   }
@@ -140,6 +143,7 @@ public class Player extends AbstractCharacter {
    * <p>The character's hit points have a constraint to always be between 0 and maxHP, both
    * inclusive.
    */
+  @Override
   public void setCurrentHp(final int newHp) {
     this.currentHp = Math.max(Math.min(newHp, maxHp), 0);
   }

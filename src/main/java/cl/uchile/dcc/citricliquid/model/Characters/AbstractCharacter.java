@@ -11,12 +11,11 @@ public abstract class AbstractCharacter implements ICharacter {
     protected int currentHp;
     protected int maxHp ;
 
-    public AbstractCharacter(String name, int hp, int atk, int def, int evd) {
-        this.name = name;
+    public AbstractCharacter(String Name, int hp, int atk, int def, int evd) {
+        this.name = Name;
         this.maxHp = currentHp = hp;
         this.atk = atk;
         this.def = def;
         this.evd = evd;
-        new Random();
     }
 }
