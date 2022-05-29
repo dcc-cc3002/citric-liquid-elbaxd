@@ -1,4 +1,4 @@
-package cl.uchile.dcc.citricliquid.model;
+package cl.uchile.dcc.citricliquid.model.Characters;
 
 import java.util.Random;
 
@@ -10,13 +10,13 @@ import java.util.Random;
  * @version 1.1.222804
  * @since 1.0
  */
-public class Player extends AbstractUnit {
+public class Player extends AbstractCharacter {
   private final Random random;
-  private final String name;
-  private final int maxHp;
-  private final int atk;
-  private final int def;
-  private final int evd;
+  private String name;
+  private int maxHp;
+  private int atk;
+  private int def;
+  private int evd;
   private int normaLevel;
   private int stars;
   private int currentHp;
@@ -37,13 +37,14 @@ public class Player extends AbstractUnit {
    */
   public Player(final String name, final int hp, final int atk, final int def,
                 final int evd) {
-    this.name = name;
-    this.maxHp = currentHp = hp;
-    this.atk = atk;
-    this.def = def;
-    this.evd = evd;
-    normaLevel = 1;
+    super();
+    super.name = name;
+    super.maxHp = currentHp = hp;
+    super.atk = atk;
+    super.def = def;
+    super.evd = evd;
     random = new Random();
+    normaLevel = 1;
   }
 
   /**
@@ -61,6 +62,13 @@ public class Player extends AbstractUnit {
   }
 
   /**
+          * Returns a uniformly distributed random value in [1, 6].
+          */
+  public int roll() {
+    return random.nextInt(6) + 1;
+  }
+
+  /**
    * Set's the seed for this player's random number generator.
    *
    * <p>The random number generator is used for taking non-deterministic decisions, this method is
@@ -68,13 +76,6 @@ public class Player extends AbstractUnit {
    */
   public void setSeed(final long seed) {
     random.setSeed(seed);
-  }
-
-  /**
-   * Returns a uniformly distributed random value in [1, 6].
-   */
-  public int roll() {
-    return random.nextInt(6) + 1;
   }
 
   /**
