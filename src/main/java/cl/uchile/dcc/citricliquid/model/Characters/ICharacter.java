@@ -56,4 +56,5 @@ public interface ICharacter {
      * inclusive.
      */
     public void setCurrentHp(final int newHp);
+    public AbstractCharacter copy();
 }

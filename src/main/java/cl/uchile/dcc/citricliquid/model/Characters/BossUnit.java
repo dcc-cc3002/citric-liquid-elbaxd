@@ -64,6 +64,11 @@ public class BossUnit extends AbstractCharacter {
     }
 
     @Override
+    public BossUnit copy() {
+        return new BossUnit(name, maxHp, atk, def, evd);
+    }
+
+    @Override
     public boolean equals(final Object o) {
         if (this == o) {
             return true;

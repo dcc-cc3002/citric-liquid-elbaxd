@@ -1,4 +1,4 @@
-package cl.uchile.dcc.citricliquid.model;
+package cl.uchile.dcc.citricliquid.model.Characters;
 
 import cl.uchile.dcc.citricliquid.model.Characters.Player;
 import org.junit.jupiter.api.Assertions;
