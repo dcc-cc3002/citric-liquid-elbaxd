@@ -24,6 +24,11 @@ public class WildUnit extends AbstractCharacter{
     }
 
     @Override
+    public int roll() {
+        return random.nextInt(6) + 1;
+    }
+
+    @Override
     public void setSeed(long seed) { random.setSeed(seed);
     }
 
@@ -60,6 +65,11 @@ public class WildUnit extends AbstractCharacter{
     @Override
     public void setCurrentHp(int newHp) {
         this.currentHp = Math.max(Math.min(newHp, maxHp), 0);
+    }
+
+    @Override
+    public WildUnit copy() {
+        return new WildUnit(name, maxHp, atk, def, evd);
     }
 
     @Override

@@ -14,6 +14,7 @@ public interface ICharacter {
      */
     public int getStars();
 
+    public int roll();
     /**
      * Set's the seed for this player's random number generator.
      *

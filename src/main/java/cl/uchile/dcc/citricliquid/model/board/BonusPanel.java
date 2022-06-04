@@ -1,6 +1,9 @@
 package cl.uchile.dcc.citricliquid.model.board;
 
 import cl.uchile.dcc.citricliquid.model.Characters.Player;
+import cl.uchile.dcc.citricliquid.model.Characters.Player;
+import java.util.HashSet;
+import java.util.Set;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
@@ -32,6 +35,11 @@ public class BonusPanel extends AbstractPanel{
     @Override
     public void addNextPanel(Panel panel) {
         nextPanels.add(panel);
+    }
+
+    @Override
+    public void activatedBy(Player player) {
+
     }
 
 }

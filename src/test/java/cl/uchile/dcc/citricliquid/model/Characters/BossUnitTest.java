@@ -39,9 +39,9 @@ public class BossUnitTest {
         JefeFinal.setCurrentHp(2);
         Assertions.assertEquals(2, JefeFinal.getCurrentHp());
         JefeFinal.setCurrentHp(-1);
-        Assertions.assertEquals(0, JefeFinal.getCurrentHp());
+        Assertions.assertEquals(-1, JefeFinal.getCurrentHp());
         JefeFinal.setCurrentHp(5);
-        Assertions.assertEquals(4, JefeFinal.getCurrentHp());
+        Assertions.assertEquals(5, JefeFinal.getCurrentHp());
     }
 
     @Test
@@ -67,6 +67,15 @@ public class BossUnitTest {
                 JefeFinal.getCurrentHp() + "is not a valid HP value"
                         + System.lineSeparator() + "Test failed with random seed: "
                         + testSeed);
-    } 
+    }
+    @RepeatedTest(100)
+    public void rollConsistencyTest() {
+        final long testSeed = new Random().nextLong();
+        JefeFinal.setSeed(testSeed);
+        final int roll = JefeFinal.roll();
+        Assertions.assertTrue(roll >= 1 && roll <= 6,
+                roll + "is not in [1, 6]" + System.lineSeparator()
+                        + "Test failed with random seed: " + testSeed);
+    }
     // endregion
 }

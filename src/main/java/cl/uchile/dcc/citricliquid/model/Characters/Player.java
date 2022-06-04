@@ -31,7 +31,7 @@ public class Player extends AbstractCharacter {
    */
   public Player(final String name, final int hp, final int atk, final int def,
                 final int evd) {
-    super();
+    super(name,hp,atk,def,evd);
     super.name = name;
     super.maxHp = currentHp = hp;
     super.atk = atk;
