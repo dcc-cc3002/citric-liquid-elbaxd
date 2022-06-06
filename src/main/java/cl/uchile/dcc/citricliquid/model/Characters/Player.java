@@ -14,6 +14,7 @@ public class Player extends AbstractCharacter {
   private final Random random;
   private int normaLevel;
   private int stars;
+  private int wins;
 
   /**
    * Creates a new character.
@@ -32,13 +33,29 @@ public class Player extends AbstractCharacter {
   public Player(final String name, final int hp, final int atk, final int def,
                 final int evd) {
     super(name,hp,atk,def,evd);
-    super.name = name;
-    super.maxHp = currentHp = hp;
-    super.atk = atk;
-    super.def = def;
-    super.evd = evd;
+    this.name = name;
+    this.maxHp = currentHp = hp;
+    this.atk = atk;
+    this.def = def;
+    this.evd = evd;
     random = new Random();
     normaLevel = 1;
+    stars = 0;
+    wins = 0;
+  }
+
+  /**
+   * Increases this player's wins count by an amount.
+   */
+  public void increaseWinsBy(final int amount) {
+    wins += amount;
+  }
+
+  /**
+   * Returns this player's wins count.
+   */
+  public int getWins() {
+    return wins;
   }
 
   /**

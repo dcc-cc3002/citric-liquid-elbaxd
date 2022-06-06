@@ -16,7 +16,7 @@ public class BossUnitTest {
     @BeforeEach
     public void setUp() {
         JefeFinal = new BossUnit(BOSS_NAME, 5, 2, 0, 3);
-    }.
+    }
 
     @Test
     public void constructorTest() {

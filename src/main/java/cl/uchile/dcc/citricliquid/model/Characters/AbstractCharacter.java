@@ -1,7 +1,5 @@
 package cl.uchile.dcc.citricliquid.model.Characters;
 
-import java.util.Random;
-
 public abstract class AbstractCharacter implements ICharacter {
 
     protected int atk;

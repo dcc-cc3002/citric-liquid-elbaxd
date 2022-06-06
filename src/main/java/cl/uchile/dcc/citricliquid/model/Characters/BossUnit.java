@@ -9,7 +9,7 @@ public class BossUnit extends AbstractCharacter {
     private int currentHp;
 
     public BossUnit(String name, int hp, int atk, int def, int evd) {
-        super();
+        super(name,hp,atk,def,evd);
         random = new Random();
     }
 

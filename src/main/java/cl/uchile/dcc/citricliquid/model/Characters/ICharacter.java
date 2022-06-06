@@ -13,7 +13,9 @@ public interface ICharacter {
      * Returns this character's star count.
      */
     public int getStars();
-
+    /**
+     * Returns a uniformly distributed random value in [1, 6].
+     */
     public int roll();
     /**
      * Set's the seed for this player's random number generator.
@@ -22,7 +24,9 @@ public interface ICharacter {
      * declared to avoid non-deterministic behaviour while testing the code.
      */
     public void setSeed(final long seed);
-
+    /**
+     * Returns the object's name.
+     */
     public String getName();
 
     /**
@@ -57,5 +61,9 @@ public interface ICharacter {
      * inclusive.
      */
     public void setCurrentHp(final int newHp);
+
+    /**
+     * Returns a copy of the object
+     */
     public AbstractCharacter copy();
 }
