@@ -20,35 +20,4 @@ public class BonusPanel extends AbstractPanel{
         player.increaseStarsBy(player.roll() * Math.min(player.getNormaLevel(), 3));
     }
 
-    /**
-     * Returns the type of this panel.
-     */
-    @Override
-    public PanelType getType() {
-        return type;
-    }
-
-    /**
-     * Returns a copy of this panel's next ones.
-     */
-    @Override
-    public Set<Panel> getNextPanels() {
-        return Set.copyOf(nextPanels);
-    }
-
-    /**
-     * Adds a new adjacent panel to this one.
-     *
-     * @param panel the panel to be added.
-     */
-    @Override
-    public void addNextPanel(Panel panel) {
-        nextPanels.add(panel);
-    }
-
-    @Override
-    public void activatedBy(Player player) {
-
-    }
-
 }

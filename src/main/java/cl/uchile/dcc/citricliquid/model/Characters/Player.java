@@ -17,7 +17,7 @@ public class Player extends AbstractCharacter {
   private int wins;
 
   /**
-   * Creates a new character.
+   * Creates a new player.
    *
    * @param name
    *     the character's name.
@@ -33,11 +33,6 @@ public class Player extends AbstractCharacter {
   public Player(final String name, final int hp, final int atk, final int def,
                 final int evd) {
     super(name,hp,atk,def,evd);
-    this.name = name;
-    this.maxHp = currentHp = hp;
-    this.atk = atk;
-    this.def = def;
-    this.evd = evd;
     random = new Random();
     normaLevel = 1;
     stars = 0;
@@ -193,7 +188,7 @@ public class Player extends AbstractCharacter {
   }
 
   /**
-   * Returns a copy of this character.
+   * Returns a copy of this player.
    */
   public Player copy() {
     return new Player(name, maxHp, atk, def, evd);

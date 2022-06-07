@@ -7,11 +7,11 @@ import java.util.Set;
 
 public interface IPanel {
 
-    public PanelType getType();
+    PanelType getType();
 
-    public Set<Panel> getNextPanels();
+    Set<Panel> getNextPanels();
 
-    public void addNextPanel(Panel panel);
+    void addNextPanel(Panel panel);
 
-    public void activatedBy(Player player);
+    void activatedBy(@NotNull Player player);
 }

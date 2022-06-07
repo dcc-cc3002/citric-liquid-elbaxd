@@ -7,15 +7,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class HomePanel extends AbstractPanel{
-
-    private final PanelType type;
-    private final Set<Panel> nextPanels = new HashSet<>();
     private final Player Owner;
 
-    public HomePanel(PanelType type,Player player) {
-        super(type);
+    public HomePanel(PanelType type,Player player,Set<Panel> nextPanels,Set<Player> playersOnPanel) {
+        super(type,nextPanels,playersOnPanel);
         this.Owner = player;
-        this.type = type;
     }
 
     public Player getOwner() {
@@ -63,40 +59,5 @@ public class HomePanel extends AbstractPanel{
      */
     private static void applyHealTo(@NotNull Player player) {
             player.setCurrentHp(player.getCurrentHp() + 1);
-    }
-
-    /**
-     * Returns the type of this panel.
-     */
-    @Override
-    public PanelType getType() {
-        return type;
-    }
-
-    /**
-     * Returns a copy of this panel's next ones.
-     */
-    @Override
-    public Set<Panel> getNextPanels() {
-        return Set.copyOf(nextPanels);
-    }
-
-    /**
-     * Adds a new adjacent panel to this one.
-     *
-     * @param panel the panel to be added.
-     */
-    @Override
-    public void addNextPanel(Panel panel) {
-        nextPanels.add(panel);
-    }
-
-    @Override
-    public void activatedBy(Player player) {
-        switch (type) {
-            case HOME -> applyHealTo(player);
-            default -> {
-            }
-        }
     }
 }
