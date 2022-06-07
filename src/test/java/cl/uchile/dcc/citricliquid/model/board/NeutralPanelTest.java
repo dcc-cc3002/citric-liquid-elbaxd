@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 1.0.6-rc.1
  * @since 1.0
  */
-public class BonusPanelTest {
+public class NeutralPanelTest {
     private final static String PLAYER_NAME = "Suguri";
     private final static int BASE_HP = 4;
     private final static int BASE_ATK = 1;
@@ -29,6 +29,7 @@ public class BonusPanelTest {
     private Panel testBossPanel;
     private Player suguri;
     private long testSeed;
+
     @BeforeEach
     public void setUp() {
         testBonusPanel = new Panel(PanelType.BONUS);
@@ -42,44 +43,30 @@ public class BonusPanelTest {
     }
     @Test
     public void constructorTest() {
-        assertEquals(PanelType.BONUS, testBonusPanel.getType());
+        assertNotEquals(PanelType.BONUS, testBonusPanel.getType());
         assertNotEquals(PanelType.BOSS, testBossPanel.getType());
         assertNotEquals(PanelType.DROP, testDropPanel.getType());
         assertNotEquals(PanelType.ENCOUNTER, testEncounterPanel.getType());
         assertNotEquals(PanelType.HOME, testHomePanel.getType());
-        assertNotEquals(PanelType.NEUTRAL, testNeutralPanel.getType());
+        assertEquals(PanelType.NEUTRAL, testNeutralPanel.getType());
     }
+
     @Test
     public void nextPanelTest() {
-        assertTrue(testBonusPanel.getNextPanels().isEmpty());
+        assertTrue(testNeutralPanel.getNextPanels().isEmpty());
         final var expectedPanel1 = new Panel(PanelType.NEUTRAL);
         final var expectedPanel2 = new Panel(PanelType.NEUTRAL);
 
-        testBonusPanel.addNextPanel(expectedPanel1);
-        assertEquals(1, testBonusPanel.getNextPanels().size());
+        testNeutralPanel.addNextPanel(expectedPanel1);
+        assertEquals(1, testNeutralPanel.getNextPanels().size());
 
-        testBonusPanel.addNextPanel(expectedPanel2);
-        assertEquals(2, testBonusPanel.getNextPanels().size());
+        testNeutralPanel.addNextPanel(expectedPanel2);
+        assertEquals(2, testNeutralPanel.getNextPanels().size());
 
-        testBonusPanel.addNextPanel(expectedPanel2);
-        assertEquals(2, testBonusPanel.getNextPanels().size());
+        testNeutralPanel.addNextPanel(expectedPanel2);
+        assertEquals(2, testNeutralPanel.getNextPanels().size());
 
         assertEquals(Set.of(expectedPanel1, expectedPanel2),
-                testBonusPanel.getNextPanels());
+                testNeutralPanel.getNextPanels());
     }
-    @RepeatedTest(100)
-    public void bonusPanelConsistencyTest() {
-        int expectedStars = 0;
-        assertEquals(expectedStars, suguri.getStars());
-        final var testRandom = new Random(testSeed);
-        suguri.setSeed(testSeed);
-        for (int normaLvl = 1; normaLvl <= 6; normaLvl++) {
-            final int roll = testRandom.nextInt(6) + 1;
-            testBonusPanel.activatedBy(suguri);
-            expectedStars += roll * Math.min(3, normaLvl);
-            assertEquals(expectedStars, suguri.getStars(),
-                    "Test failed with seed: " + testSeed);
-            suguri.normaClear();
-        }
-}
 }

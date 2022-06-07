@@ -3,24 +3,30 @@ package cl.uchile.dcc.citricliquid.model.board;
 import cl.uchile.dcc.citricliquid.model.Characters.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class HomePanel extends AbstractPanel{
     private final Player Owner;
 
-    public HomePanel(PanelType type,Player player,Set<Panel> nextPanels,Set<Player> playersOnPanel) {
-        super(type,nextPanels,playersOnPanel);
+    /**
+     * Creates a new HomePanel.
+     *
+     * @param type the type of the panel.
+     *
+     * @param player the player who own the panel.
+     */
+    public HomePanel(PanelType type,Player player) {
+        super(type);
         this.Owner = player;
     }
-
+    /**
+     * Returns the player who owns this HomePanel.
+     */
     public Player getOwner() {
         return Owner;
     }
     /**
      * Checks if the player owns this home panel.
      */
-    public boolean ownerCheck(Player player){
+    public boolean ownerCheck(@NotNull Player player){
         return player == Owner;
     }
     /**
@@ -57,7 +63,7 @@ public class HomePanel extends AbstractPanel{
     /**
      * Restores a player's HP in 1.
      */
-    private static void applyHealTo(@NotNull Player player) {
+    static void applyHealTo(@NotNull Player player) {
             player.setCurrentHp(player.getCurrentHp() + 1);
     }
 }

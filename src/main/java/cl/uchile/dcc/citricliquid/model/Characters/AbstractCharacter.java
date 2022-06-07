@@ -9,8 +9,8 @@ public abstract class AbstractCharacter implements ICharacter {
     protected String name;
     protected int currentHp;
     protected int maxHp ;
-    private Random random;
-    private int stars;
+    private Random random = new Random();
+    private int stars = 0;
 
     public AbstractCharacter(String Name, int hp, int atk, int def, int evd) {
         this.name = Name;
@@ -18,8 +18,6 @@ public abstract class AbstractCharacter implements ICharacter {
         this.atk = atk;
         this.def = def;
         this.evd = evd;
-        random = new Random();
-        stars = 0;
     }
     @Override
     public void increaseStarsBy(final int amount) {

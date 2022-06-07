@@ -8,13 +8,11 @@ import java.util.Set;
 
 public abstract class AbstractPanel implements IPanel {
     protected PanelType type;
-    protected Set<Panel> nextPanels;
-    protected Set<Player> playersOnPanel;
+    protected Set<Panel> nextPanels = new HashSet<>();
+    protected Set<Player> playersOnPanel = new HashSet<>();
 
-    protected AbstractPanel(PanelType type, Set<Panel> nextPanels,Set<Player> playersOnPanel) {
+    protected AbstractPanel(final PanelType type) {
         this.type = type;
-        this.nextPanels = nextPanels;
-        this.playersOnPanel = playersOnPanel;
     }
 
     /**
@@ -43,8 +41,32 @@ public abstract class AbstractPanel implements IPanel {
         nextPanels.add(panel);
     }
 
+    /**
+     * Returns a copy of the players on the panel.
+     */
     @Override
-    public void activatedBy(Player player) {
+    public Set<Player> getPlayerOnPanel() {
+        return Set.copyOf(playersOnPanel);
+    }
 
+    /**
+     * Adds a new player to the list of players on the panel.
+     *
+     * @param player the player to be added.
+     */
+    @Override
+    public void addPlayerOnPanel(Player player) {
+        playersOnPanel.add(player);
+    }
+
+    @Override
+    public void activatedBy(@NotNull Player player) {
+        switch (type) {
+            case BONUS -> BonusPanel.applyBonusTo(player);
+            case DROP -> DropPanel.applyDropTo(player);
+            case HOME -> HomePanel.applyHealTo(player);
+            default -> {
+            }
+        }
     }
 }

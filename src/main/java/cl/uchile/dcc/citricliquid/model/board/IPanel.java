@@ -13,5 +13,9 @@ public interface IPanel {
 
     void addNextPanel(Panel panel);
 
+    Set<Player> getPlayerOnPanel();
+
+    void addPlayerOnPanel(Player player);
+
     void activatedBy(@NotNull Player player);
 }
