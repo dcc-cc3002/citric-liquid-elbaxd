@@ -13,7 +13,7 @@ public interface IPanel {
 
     void addNextPanel(Panel panel);
 
-    Set<Player> getPlayerOnPanel();
+    Set<Player> getPlayersOnPanel();
 
     void addPlayerOnPanel(Player player);
 

@@ -39,7 +39,7 @@ public class BossUnitTest {
         JefeFinal.setCurrentHp(2);
         Assertions.assertEquals(2, JefeFinal.getCurrentHp());
         JefeFinal.setCurrentHp(-1);
-        Assertions.assertEquals(-1, JefeFinal.getCurrentHp());
+        Assertions.assertEquals(0, JefeFinal.getCurrentHp());
         JefeFinal.setCurrentHp(5);
         Assertions.assertEquals(5, JefeFinal.getCurrentHp());
     }

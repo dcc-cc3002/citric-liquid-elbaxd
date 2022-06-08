@@ -46,8 +46,8 @@ public class PlayerTest {
     Assertions.assertEquals(2, suguri.getCurrentHp());
     suguri.setCurrentHp(-1);
     Assertions.assertEquals(0, suguri.getCurrentHp());
-    suguri.setCurrentHp(5);
-    Assertions.assertEquals(4, suguri.getCurrentHp());
+    suguri.setCurrentHp(3);
+    Assertions.assertEquals(3, suguri.getCurrentHp());
   }
 
   @Test

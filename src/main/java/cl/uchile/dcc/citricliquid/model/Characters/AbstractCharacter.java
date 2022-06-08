@@ -118,23 +118,6 @@ public abstract class AbstractCharacter implements ICharacter {
         stars = Math.max(0, stars - amount);
     }
 
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof final Player player)) {
-            return false;
-        }
-        return getMaxHp() == player.getMaxHp()
-                && getAtk() == player.getAtk()
-                && getDef() == player.getDef()
-                && getEvd() == player.getEvd()
-                && getStars() == player.getStars()
-                && getCurrentHp() == player.getCurrentHp()
-                && getName().equals(player.getName());
-    }
-
     /**
      * Returns a copy of this character.
      */

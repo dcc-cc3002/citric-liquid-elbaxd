@@ -38,14 +38,14 @@ public class WildUnitTest {
         WildUnit.setCurrentHp(2);
         Assertions.assertEquals(2, WildUnit.getCurrentHp());
         WildUnit.setCurrentHp(-1);
-        Assertions.assertEquals(-1, WildUnit.getCurrentHp());
-        WildUnit.setCurrentHp(5);
-        Assertions.assertEquals(5, WildUnit.getCurrentHp());
+        Assertions.assertEquals(0, WildUnit.getCurrentHp());
+        WildUnit.setCurrentHp(1);
+        Assertions.assertEquals(1, WildUnit.getCurrentHp());
     }
 
     @Test
     public void copyTest() {
-        final var expectedWildUnit = new Player(WILD_NAME, 5, 2, 0, 3);
+        final var expectedWildUnit = new Player(WILD_NAME, 2, 1, 0, 0);
         final var actualWildUnit = WildUnit.copy();
         // Checks that the copied player have the same parameters as the original
         Assertions.assertEquals(expectedWildUnit, actualWildUnit);

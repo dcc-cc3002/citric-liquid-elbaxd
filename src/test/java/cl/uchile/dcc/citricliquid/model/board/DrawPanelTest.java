@@ -2,20 +2,14 @@ package cl.uchile.dcc.citricliquid.model.board;
 
 import cl.uchile.dcc.citricliquid.model.Characters.Player;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
-import java.util.Random;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * @author <a href="mailto:ignacio.slater@ug.uchile.cl">Ignacio Slater M.</a>.
- * @version 1.0.6-rc.1
- * @since 1.0
- */
-public class BossPanelTest {
+public class DrawPanelTest {
     private final static String PLAYER_NAME = "Suguri";
     private final static int BASE_HP = 4;
     private final static int BASE_ATK = 1;
@@ -29,7 +23,6 @@ public class BossPanelTest {
     private BossPanel testBossPanel;
     private DrawPanel testDrawPanel;
     private Player suguri;
-    private long testSeed;
 
     @BeforeEach
     public void setUp() {
@@ -40,52 +33,53 @@ public class BossPanelTest {
         testHomePanel = new HomePanel(PanelType.HOME,suguri);
         testNeutralPanel = new NeutralPanel(PanelType.NEUTRAL);
         testDrawPanel = new DrawPanel(PanelType.DRAW);
-        testSeed = new Random().nextLong();
         suguri = new Player(PLAYER_NAME, BASE_HP, BASE_ATK, BASE_DEF, BASE_EVD);
     }
     @Test
     public void constructorTest() {
-        assertNotEquals(PanelType.BOSS, testBonusPanel.getType());
-        assertEquals(PanelType.BOSS, testBossPanel.getType());
-        assertNotEquals(PanelType.BOSS, testDropPanel.getType());
-        assertNotEquals(PanelType.BOSS, testEncounterPanel.getType());
-        assertNotEquals(PanelType.BOSS, testHomePanel.getType());
-        assertNotEquals(PanelType.BOSS, testNeutralPanel.getType());
+        assertNotEquals(PanelType.DRAW, testBonusPanel.getType());
+        assertNotEquals(PanelType.DRAW, testBossPanel.getType());
+        assertNotEquals(PanelType.DRAW, testDropPanel.getType());
+        assertNotEquals(PanelType.DRAW, testEncounterPanel.getType());
+        assertNotEquals(PanelType.DRAW, testHomePanel.getType());
+        assertNotEquals(PanelType.DRAW, testNeutralPanel.getType());
+        assertEquals(PanelType.DRAW, testDrawPanel.getType());
     }
+
     @Test
     public void playersOnPanelTest() {
-        assertTrue(testBossPanel.getPlayersOnPanel().isEmpty());
+        assertTrue(testDrawPanel.getPlayersOnPanel().isEmpty());
         final var expectedPlayer1 = new Player("suguri3",2,1,1,1);
         final var expectedPlayer2 = new Player("suguri4",4,0,2,2);
 
-        testBossPanel.addPlayerOnPanel(expectedPlayer1);
-        assertEquals(1, testBossPanel.getPlayersOnPanel().size());
+        testDrawPanel.addPlayerOnPanel(expectedPlayer1);
+        assertEquals(1, testDrawPanel.getPlayersOnPanel().size());
 
-        testBossPanel.addPlayerOnPanel(expectedPlayer2);
-        assertEquals(2, testBossPanel.getPlayersOnPanel().size());
+        testDrawPanel.addPlayerOnPanel(expectedPlayer2);
+        assertEquals(2, testDrawPanel.getPlayersOnPanel().size());
 
-        testBossPanel.addPlayerOnPanel(expectedPlayer2);
-        assertEquals(2, testBossPanel.getPlayersOnPanel().size());
+        testDrawPanel.addPlayerOnPanel(expectedPlayer2);
+        assertEquals(2, testDrawPanel.getPlayersOnPanel().size());
 
         assertEquals(Set.of(expectedPlayer1, expectedPlayer2),
-                testBossPanel.getPlayersOnPanel());
+                testDrawPanel.getPlayersOnPanel());
     }
     @Test
     public void nextPanelTest() {
-        assertTrue(testBossPanel.getNextPanels().isEmpty());
-        final var expectedPanel1 = new Panel(PanelType.BOSS);
-        final var expectedPanel2 = new Panel(PanelType.BOSS);
+        assertTrue(testNeutralPanel.getNextPanels().isEmpty());
+        final var expectedPanel1 = new Panel(PanelType.NEUTRAL);
+        final var expectedPanel2 = new Panel(PanelType.NEUTRAL);
 
-        testBossPanel.addNextPanel(expectedPanel1);
-        assertEquals(1, testBossPanel.getNextPanels().size());
+        testNeutralPanel.addNextPanel(expectedPanel1);
+        assertEquals(1, testNeutralPanel.getNextPanels().size());
 
-        testBossPanel.addNextPanel(expectedPanel2);
-        assertEquals(2, testBossPanel.getNextPanels().size());
+        testNeutralPanel.addNextPanel(expectedPanel2);
+        assertEquals(2, testNeutralPanel.getNextPanels().size());
 
-        testBossPanel.addNextPanel(expectedPanel2);
-        assertEquals(2, testBossPanel.getNextPanels().size());
+        testNeutralPanel.addNextPanel(expectedPanel2);
+        assertEquals(2, testNeutralPanel.getNextPanels().size());
 
         assertEquals(Set.of(expectedPanel1, expectedPanel2),
-                testBossPanel.getNextPanels());
+                testNeutralPanel.getNextPanels());
     }
 }

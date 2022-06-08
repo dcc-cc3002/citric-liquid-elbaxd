@@ -21,41 +21,40 @@ public class HomePanel extends AbstractPanel{
      * Returns the player who owns this HomePanel.
      */
     public Player getOwner() {
-        return Owner;
+        return this.Owner;
     }
     /**
      * Checks if the player owns this home panel.
      */
     public boolean ownerCheck(@NotNull Player player){
-        return player == Owner;
+        return player == this.Owner;
     }
     /**
      * Checks if the player accomplish with the requirements to go up 1 level of Norma.
      */
     public void normaCheck(@NotNull Player player){
-        int normaLevel = player.getNormaLevel();
-        if (normaLevel == 1 ){
-            if (player.getStars() >= 10){
+        if (player.getNormaLevel() == 1 ) {
+            if (player.getStars() >= 10 || player.getWins() >= 2) {
                 player.normaClear();
             }
         }
-        if(normaLevel == 2){
-            if (player.getStars() >= 30 && player.getWins() >= 2){
+        if(player.getNormaLevel() == 2){
+            if (player.getStars() >= 30 || player.getWins() >= 2){
                 player.normaClear();
             }
         }
-        if(normaLevel == 3){
-            if (player.getStars() >= 70 && player.getWins() >= 5){
+        if(player.getNormaLevel() == 3){
+            if (player.getStars() >= 70 || player.getWins() >= 5){
                 player.normaClear();
             }
         }
-        if(normaLevel == 4){
-            if (player.getStars() >= 120 && player.getWins() >= 9){
+        if(player.getNormaLevel() == 4){
+            if (player.getStars() >= 120 || player.getWins() >= 9){
                 player.normaClear();
             }
         }
-        if(normaLevel == 6){
-            if (player.getStars() >= 200 && player.getWins() >= 14){
+        if(player.getNormaLevel() == 5){
+            if (player.getStars() >= 200 || player.getWins() >= 14){
                 player.normaClear();
             }
         }

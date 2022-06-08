@@ -27,4 +27,20 @@ public class WildUnit extends AbstractCharacter{
         random = new Random();
         stars = 0;
     }
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof final WildUnit wildUnit)) {
+            return false;
+        }
+        return getMaxHp() == wildUnit.getMaxHp()
+                && getAtk() == wildUnit.getAtk()
+                && getDef() == wildUnit.getDef()
+                && getEvd() == wildUnit.getEvd()
+                && getStars() == wildUnit.getStars()
+                && getCurrentHp() == wildUnit.getCurrentHp()
+                && getName().equals(wildUnit.getName());
+    }
 }
