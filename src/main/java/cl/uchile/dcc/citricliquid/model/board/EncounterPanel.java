@@ -1,12 +1,11 @@
 package cl.uchile.dcc.citricliquid.model.board;
 
-import cl.uchile.dcc.citricliquid.model.Characters.Player;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.HashSet;
-import java.util.Set;
-
 public class EncounterPanel extends AbstractPanel{
+    /**
+     * Creates a new EncounterPanel.
+     *
+     * @param type the type of the panel.
+     */
     protected EncounterPanel(PanelType type) {
         super(type);
     }

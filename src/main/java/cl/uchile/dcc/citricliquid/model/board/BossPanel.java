@@ -6,6 +6,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class BossPanel extends AbstractPanel{
+    /**
+     * Creates a new BossPanel.
+     *
+     * @param type the type of the panel.
+     */
     protected BossPanel(PanelType type) {
         super(type);
     }

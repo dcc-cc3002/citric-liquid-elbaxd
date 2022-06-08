@@ -6,6 +6,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class NeutralPanel extends AbstractPanel{
+    /**
+     * Creates a new NeutralPanel.
+     *
+     * @param type the type of the panel.
+     */
     public NeutralPanel(PanelType type) {
         super(type);
     }

@@ -7,13 +7,18 @@ import org.jetbrains.annotations.NotNull;
 
 public class BonusPanel extends AbstractPanel{
 
+    /**
+     * Creates a new BonusPanel.
+     *
+     * @param type the type of the panel.
+     */
     protected BonusPanel(PanelType type) {
         super(type);
         this.type = type;
     }
 
     /**
-     * Reduces the player's star count by the D6 roll multiplied by the maximum between the player's
+     * Increases the player's star count by the D6 roll multiplied by the minimum between the player's
      * norma level and three.
      */
     static void applyBonusTo(final @NotNull Player player) {

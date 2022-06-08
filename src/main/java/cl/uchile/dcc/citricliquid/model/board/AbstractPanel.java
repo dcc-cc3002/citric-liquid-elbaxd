@@ -59,6 +59,9 @@ public abstract class AbstractPanel implements IPanel {
         playersOnPanel.add(player);
     }
 
+    /**
+     * Executes the appropriate action to the player according to this panel's type.
+     */
     @Override
     public void activatedBy(@NotNull Player player) {
         switch (type) {
