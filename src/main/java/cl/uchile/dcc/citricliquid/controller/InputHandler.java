@@ -4,10 +4,10 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class InputHandler implements PropertyChangeListener {
-    private final Controller controller;
+    private final GameController gameController;
 
-    public InputHandler(Controller controller) {
-        this.controller = controller;
+    public InputHandler(GameController gameController) {
+        this.gameController = gameController;
     }
 
     @Override
@@ -15,9 +15,9 @@ public class InputHandler implements PropertyChangeListener {
         if (evt.getNewValue() instanceof Boolean) {
             boolean flag = (boolean) evt.getNewValue();
             if (flag) {
-                controller.runContextAction();
+                gameController.runContextAction();
             } else {
-                controller.promptCharacterSelection();
+                gameController.promptCharacterSelection();
             }
         }
     }

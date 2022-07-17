@@ -15,7 +15,7 @@ public class NeutralPanel extends AbstractPanel{
         super(type);
     }
     /**
-     * This panel does nothing and ends the turn of the player without any changes.
+     * This panel does nothing and ends the Turn of the player without any changes.
      */
     public void nothing(){
         System.out.println("Literal no hace nada este panel");

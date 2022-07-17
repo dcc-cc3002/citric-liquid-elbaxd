@@ -6,7 +6,7 @@ import cl.uchile.dcc.citricliquid.
 import java.util.List;
 import java.util.Scanner;
 
-public class Controller {
+public class GameController {
     private final GameCharacter player = new GameCharacter("Player");
     private final List<GameCharacter> enemies =
             List.of(new GameCharacter("Enemy 1"), new GameCharacter("Enemy 2"), new GameCharacter("Enemy 3"));
@@ -15,13 +15,13 @@ public class Controller {
     private InputHandler inputHandler = new InputHandler(this);
     private InputManager inputManager = new InputManager();
 
-    public Controller() {
+    public GameController() {
         inputManager.addInputPromptListener(inputHandler);
     }
 
     public static void main(String[] args) throws InvalidStateOperationException {
-        Controller controller = new Controller();
-        controller.startBattle();
+        GameController gameController = new GameController();
+        gameController.startBattle();
     }
 
     /**
