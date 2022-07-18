@@ -11,8 +11,9 @@ public class BossPanel extends AbstractPanel{
      *
      * @param type the type of the panel.
      */
-    protected BossPanel(PanelType type) {
+    protected BossPanel(PanelType type, int number) {
         super(type);
+        this.number = number;
     }
     /**
      * In this panel the player battles with a boss unit.

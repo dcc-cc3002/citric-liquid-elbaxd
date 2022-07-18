@@ -12,9 +12,9 @@ public class BonusPanel extends AbstractPanel{
      *
      * @param type the type of the panel.
      */
-    protected BonusPanel(PanelType type) {
+    public BonusPanel(PanelType type, int number) {
         super(type);
-        this.type = type;
+        this.number = number;
     }
 
     /**

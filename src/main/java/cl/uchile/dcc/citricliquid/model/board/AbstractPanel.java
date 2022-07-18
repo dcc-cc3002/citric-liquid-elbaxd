@@ -8,12 +8,19 @@ import java.util.Set;
 
 public abstract class AbstractPanel implements IPanel {
     protected PanelType type;
+    protected int number;
     protected Set<Panel> nextPanels = new HashSet<>();
     protected Set<Player> playersOnPanel = new HashSet<>();
 
     protected AbstractPanel(final PanelType type) {
         this.type = type;
     }
+
+    /**
+     * Returns the number of this panel.
+     */
+    @Override
+    public int getNumber() {return number;}
 
     /**
      * Returns the type of this panel.

@@ -7,6 +7,8 @@ import java.util.Set;
 
 public interface IPanel {
 
+    int getNumber();
+
     PanelType getType();
 
     Set<Panel> getNextPanels();

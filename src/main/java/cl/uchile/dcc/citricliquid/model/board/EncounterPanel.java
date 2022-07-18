@@ -6,8 +6,9 @@ public class EncounterPanel extends AbstractPanel{
      *
      * @param type the type of the panel.
      */
-    protected EncounterPanel(PanelType type) {
+    protected EncounterPanel(PanelType type, int number) {
         super(type);
+        this.number = number;
     }
     /**
      * In this panel the player battles with a random wild unit.

@@ -11,8 +11,9 @@ public class NeutralPanel extends AbstractPanel{
      *
      * @param type the type of the panel.
      */
-    public NeutralPanel(PanelType type) {
+    public NeutralPanel(PanelType type, int number) {
         super(type);
+        this.number = number;
     }
     /**
      * This panel does nothing and ends the Turn of the player without any changes.

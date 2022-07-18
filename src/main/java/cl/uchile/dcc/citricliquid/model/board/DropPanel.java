@@ -12,8 +12,9 @@ public class DropPanel extends AbstractPanel{
      *
      * @param type the type of the panel.
      */
-    public DropPanel(PanelType type) {
+    public DropPanel(PanelType type, int number) {
         super(type);
+        this.number = number;
     }
 
     /**

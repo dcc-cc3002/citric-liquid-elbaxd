@@ -13,8 +13,9 @@ public class HomePanel extends AbstractPanel{
      *
      * @param player the player who own the panel.
      */
-    public HomePanel(PanelType type,Player player) {
+    public HomePanel(PanelType type,int number,Player player) {
         super(type);
+        this.number = number;
         this.Owner = player;
     }
     /**

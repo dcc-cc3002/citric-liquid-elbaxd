@@ -1,8 +1,5 @@
 package cl.uchile.dcc.citricliquid.controller.states;
 
-import cl.uchile.dcc.citricliquid.controller.GameController;
-import cl.uchile.dcc.citricliquid.exceptions.InvalidStateOperationException;
-import
 public class State {
     private Turn turn;
 
