@@ -4,10 +4,12 @@ import cl.uchile.dcc.citricliquid.controller.states.Turn;
 import cl.uchile.dcc.citricliquid.model.Characters.BossUnit;
 import cl.uchile.dcc.citricliquid.model.Characters.Player;
 import cl.uchile.dcc.citricliquid.model.Characters.WildUnit;
+import cl.uchile.dcc.citricliquid.model.NormaGoal;
 import cl.uchile.dcc.citricliquid.model.board.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class GameController {
     private Player player;
@@ -169,12 +171,16 @@ public class GameController {
     }
 
     /**
-     * A panel is add as a next panel of on other panel
+     * A panel ,or more than one, is add as a next panel of on other panel
      * @param actualPanel the panel that will have a next panel
-     * @param nextPanel the panel that is add next
+     * @param nextPanel the panel or panels that is adding next
      */
 
-    public void setNextPanel(AbstractPanel actualPanel, AbstractPanel nextPanel){actualPanel.addNextPanel(nextPanel);}
+    public void setNextPanel(AbstractPanel actualPanel, Set<AbstractPanel> nextPanels){
+        for (AbstractPanel p : nextPanels) {
+            actualPanel.addNextPanel(p);
+        }
+    }
 
     /**
      * set a player as a owner of a home panel
@@ -189,6 +195,15 @@ public class GameController {
      */
 
     public List<AbstractPanel> getAllPanels(){return allPanels;}
+
+    /**
+     * Set the goal that the player will do to level up the norma level
+     * @param goal is the goal that the player will try to do
+     */
+    public void setPlayerGoal(NormaGoal goal){
+        Player player = getTurnOwner();
+        player.setNormaGoal(goal);
+    }
 
     /**
      * Returns the player's who turn is it now
@@ -224,7 +239,6 @@ public class GameController {
         turno +=1;
         Player iniciar = getTurnOwner();
         iniciar.setMyTurn(true);
-        // int chapter = getChapter();
         turn.start();
     }
 
@@ -242,7 +256,11 @@ public class GameController {
      */
     public void movement(Player player,int moves,AbstractPanel panel){
         Set<Player> playersOnPanel = panel.getPlayersOnPanel();
-        player.setPanel();
+        player.setPanel(panel);
+        moves-=1
+        if(moves==0){
+            endTurn();
+        }
         if(){
 
         }

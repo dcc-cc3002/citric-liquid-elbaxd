@@ -1,5 +1,8 @@
 package cl.uchile.dcc.citricliquid.model.Characters;
 
+import cl.uchile.dcc.citricliquid.model.NormaGoal;
+import cl.uchile.dcc.citricliquid.model.board.AbstractPanel;
+
 import java.util.Random;
 
 /**
@@ -17,6 +20,7 @@ public class Player extends AbstractCharacter {
   private int wins;
   private boolean myTurn;
 
+  private NormaGoal normaGoal;
   private AbstractPanel panel;
 
   /**
@@ -38,6 +42,7 @@ public class Player extends AbstractCharacter {
     super(name,hp,atk,def,evd);
     this.myTurn = false;
     this.random = new Random();
+    this.normaGoal = NormaGoal.WINS;
     this.normaLevel = 1;
     this.stars = 0;
     this.wins = 0;
@@ -201,5 +206,9 @@ public class Player extends AbstractCharacter {
    */
   public Player copy() {
     return new Player(name, maxHp, atk, def, evd);
+  }
+
+  public void setNormaGoal(NormaGoal goal) {
+
   }
 }
