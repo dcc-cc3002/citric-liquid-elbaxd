@@ -4,7 +4,7 @@ import cl.uchile.dcc.citricliquid.model.Characters.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class HomePanel extends AbstractPanel{
-    private final Player Owner;
+    private Player Owner;
 
     /**
      * Creates a new HomePanel.
@@ -18,6 +18,11 @@ public class HomePanel extends AbstractPanel{
         this.number = number;
         this.Owner = player;
     }
+
+    /**
+     * Set the new player who owns this HomePanel.
+     */
+    public void setOwner(Player player2){this.Owner = player2;}
     /**
      * Returns the player who owns this HomePanel.
      */

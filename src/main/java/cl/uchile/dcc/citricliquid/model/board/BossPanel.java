@@ -11,7 +11,7 @@ public class BossPanel extends AbstractPanel{
      *
      * @param type the type of the panel.
      */
-    protected BossPanel(PanelType type, int number) {
+    public BossPanel(PanelType type, int number) {
         super(type);
         this.number = number;
     }

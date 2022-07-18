@@ -19,5 +19,7 @@ public interface IPanel {
 
     void addPlayerOnPanel(Player player);
 
+    void removePlayerOnPanel(Player player);
+
     void activatedBy(@NotNull Player player);
 }

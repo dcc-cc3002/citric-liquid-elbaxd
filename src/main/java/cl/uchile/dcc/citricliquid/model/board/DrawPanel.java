@@ -10,7 +10,7 @@ public class DrawPanel extends AbstractPanel{
      *
      * @param type the type of the panel.
      */
-    protected DrawPanel(PanelType type, int number) {
+    public DrawPanel(PanelType type, int number) {
         super(type);
         this.number = number;
     }

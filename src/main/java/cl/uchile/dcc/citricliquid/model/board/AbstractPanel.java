@@ -66,6 +66,9 @@ public abstract class AbstractPanel implements IPanel {
         playersOnPanel.add(player);
     }
 
+    @Override
+    public void removePlayerOnPanel(Player player) {playersOnPanel.remove(player);}
+
     /**
      * Executes the appropriate action to the player according to this panel's type.
      */

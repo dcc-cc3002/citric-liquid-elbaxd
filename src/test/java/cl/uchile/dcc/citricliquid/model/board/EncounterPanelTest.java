@@ -33,14 +33,13 @@ public class EncounterPanelTest {
 
     @BeforeEach
     public void setUp() {
-        testBonusPanel = new BonusPanel(PanelType.BONUS);
-        testBossPanel = new BossPanel(PanelType.BOSS);
-        testDropPanel = new DropPanel(PanelType.DROP);
-        testEncounterPanel = new EncounterPanel(PanelType.ENCOUNTER);
-        testHomePanel = new HomePanel(PanelType.HOME,suguri);
-        testNeutralPanel = new NeutralPanel(PanelType.NEUTRAL);
-        testDrawPanel = new DrawPanel(PanelType.DRAW);
-        testSeed = new Random().nextLong();
+        testBonusPanel = new BonusPanel(PanelType.BONUS,1);
+        testBossPanel = new BossPanel(PanelType.BOSS,2);
+        testDropPanel = new DropPanel(PanelType.DROP,3);
+        testEncounterPanel = new EncounterPanel(PanelType.ENCOUNTER,4);
+        testHomePanel = new HomePanel(PanelType.HOME,5,suguri);
+        testNeutralPanel = new NeutralPanel(PanelType.NEUTRAL,6);
+        testDrawPanel = new DrawPanel(PanelType.DRAW,7);
         suguri = new Player(PLAYER_NAME, BASE_HP, BASE_ATK, BASE_DEF, BASE_EVD);
     }
     @Test
@@ -51,6 +50,13 @@ public class EncounterPanelTest {
         assertEquals(PanelType.ENCOUNTER, testEncounterPanel.getType());
         assertNotEquals(PanelType.ENCOUNTER, testHomePanel.getType());
         assertNotEquals(PanelType.ENCOUNTER, testNeutralPanel.getType());
+
+        assertNotEquals(4, testBonusPanel.getNumber());
+        assertNotEquals(4, testBossPanel.getNumber());
+        assertNotEquals(4, testDropPanel.getNumber());
+        assertEquals(4, testEncounterPanel.getNumber());
+        assertNotEquals(4, testHomePanel.getNumber());
+        assertNotEquals(4, testNeutralPanel.getNumber());
     }
     @Test
     public void playersOnPanelTest() {
@@ -68,6 +74,24 @@ public class EncounterPanelTest {
         assertEquals(2, testEncounterPanel.getPlayersOnPanel().size());
 
         assertEquals(Set.of(expectedPlayer1, expectedPlayer2),
+                testEncounterPanel.getPlayersOnPanel());
+
+        testEncounterPanel.removePlayerOnPanel(expectedPlayer1);
+        assertEquals(2, testEncounterPanel.getPlayersOnPanel().size());
+
+        testEncounterPanel.removePlayerOnPanel(expectedPlayer2);
+        assertEquals(1, testEncounterPanel.getPlayersOnPanel().size());
+
+        testEncounterPanel.removePlayerOnPanel(expectedPlayer2);
+        assertEquals(1, testEncounterPanel.getPlayersOnPanel().size());
+
+        assertNotEquals(Set.of(expectedPlayer1, expectedPlayer2),
+                testEncounterPanel.getPlayersOnPanel());
+        assertNotEquals(Set.of(expectedPlayer2),
+                testEncounterPanel.getPlayersOnPanel());
+        assertNotEquals(Set.of(expectedPlayer1),
+                testEncounterPanel.getPlayersOnPanel());
+        assertEquals(Set.of(),
                 testEncounterPanel.getPlayersOnPanel());
     }
     @Test

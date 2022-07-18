@@ -6,7 +6,7 @@ public class EncounterPanel extends AbstractPanel{
      *
      * @param type the type of the panel.
      */
-    protected EncounterPanel(PanelType type, int number) {
+    public EncounterPanel(PanelType type, int number) {
         super(type);
         this.number = number;
     }
