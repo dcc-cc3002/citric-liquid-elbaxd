@@ -205,14 +205,36 @@ public class GameController {
         return player;
     }
 
+    /**
+     * Returns the current chapter
+     */
+
     public int getChapter() {
         chapter =((turno-1)/4)+1;
         return chapter;
     }
 
     /**
-     * Returns the current chapter
+     * Ends the turn of the actual player
      */
+
+    public void endTurn(){
+        Player terminar =getTurnOwner();
+        terminar.setMyTurn(false);
+        turno +=1;
+        Player iniciar = getTurnOwner();
+        iniciar.setMyTurn(true);
+        int chapter = getChapter();
+        turn.start();
+    }
+
+    /**
+     * Do a normaCheck and a normaClear if the player is in a home panel
+     */
+
+    public void normaCheckClear(Player player){
+
+    }
 
 
 

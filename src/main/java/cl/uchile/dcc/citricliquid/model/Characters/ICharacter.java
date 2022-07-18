@@ -24,6 +24,13 @@ public interface ICharacter {
      * declared to avoid non-deterministic behaviour while testing the code.
      */
     void setSeed(final long seed);
+
+    /**
+     * Set the panel of the character
+     */
+
+    void setPanel(Abst)
+
     /**
      * Returns the object's name.
      */

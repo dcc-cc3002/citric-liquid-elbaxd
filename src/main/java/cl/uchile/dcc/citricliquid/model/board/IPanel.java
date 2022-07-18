@@ -11,7 +11,7 @@ public interface IPanel {
 
     PanelType getType();
 
-    Set<Panel> getNextPanels();
+    Set<AbstractPanel> getNextPanels();
 
     void addNextPanel(AbstractPanel panel);
 

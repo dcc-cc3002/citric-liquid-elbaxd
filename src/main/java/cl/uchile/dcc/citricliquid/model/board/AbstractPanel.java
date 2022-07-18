@@ -9,7 +9,7 @@ import java.util.Set;
 public abstract class AbstractPanel implements IPanel {
     protected PanelType type;
     protected int number;
-    protected Set<Panel> nextPanels = new HashSet<>();
+    protected Set<AbstractPanel> nextPanels = new HashSet<AbstractPanel>();
     protected Set<Player> playersOnPanel = new HashSet<>();
 
     protected AbstractPanel(final PanelType type) {
@@ -34,7 +34,7 @@ public abstract class AbstractPanel implements IPanel {
      * Returns a copy of this panel's next ones.
      */
     @Override
-    public Set<Panel> getNextPanels() {
+    public Set<AbstractPanel> getNextPanels() {
         return Set.copyOf(nextPanels);
     }
 
@@ -44,7 +44,7 @@ public abstract class AbstractPanel implements IPanel {
      * @param panel the panel to be added.
      */
     @Override
-    public void addNextPanel(Panel panel) {
+    public void addNextPanel(AbstractPanel panel) {
         nextPanels.add(panel);
     }
 

@@ -30,7 +30,7 @@ public class DrawPanelTest {
         testBossPanel = new BossPanel(PanelType.BOSS,2);
         testDropPanel = new DropPanel(PanelType.DROP,3);
         testEncounterPanel = new EncounterPanel(PanelType.ENCOUNTER,4);
-        testHomePanel = new HomePanel(PanelType.HOME,5,suguri);
+        testHomePanel = new HomePanel(PanelType.HOME,5);
         testNeutralPanel = new NeutralPanel(PanelType.NEUTRAL,6);
         testDrawPanel = new DrawPanel(PanelType.DRAW,7);
         suguri = new Player(PLAYER_NAME, BASE_HP, BASE_ATK, BASE_DEF, BASE_EVD);

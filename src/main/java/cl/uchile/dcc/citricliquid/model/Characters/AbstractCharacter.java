@@ -11,8 +11,10 @@ public abstract class AbstractCharacter implements ICharacter {
     protected int maxHp ;
     private Random random = new Random();
     private int stars = 0;
+    private AbstractPanel panel;
 
     public AbstractCharacter(String Name, int hp, int atk, int def, int evd) {
+        this.panel = null;
         this.name = Name;
         this.maxHp = currentHp = hp;
         this.atk = atk;
