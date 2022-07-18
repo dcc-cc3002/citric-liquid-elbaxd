@@ -27,6 +27,7 @@ public interface ICharacter {
     /**
      * Returns the object's name.
      */
+
     String getName();
 
     /**

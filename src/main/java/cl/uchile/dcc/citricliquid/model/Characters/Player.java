@@ -15,6 +15,7 @@ public class Player extends AbstractCharacter {
   private int normaLevel;
   private int stars;
   private int wins;
+  private boolean myTurn;
 
   /**
    * Creates a new player.
@@ -33,10 +34,11 @@ public class Player extends AbstractCharacter {
   public Player(final String name, final int hp, final int atk, final int def,
                 final int evd) {
     super(name,hp,atk,def,evd);
-    random = new Random();
-    normaLevel = 1;
-    stars = 0;
-    wins = 0;
+    this.myTurn = false;
+    this.random = new Random();
+    this.normaLevel = 1;
+    this.stars = 0;
+    this.wins = 0;
   }
 
   /**
@@ -86,6 +88,11 @@ public class Player extends AbstractCharacter {
   public void setSeed(final long seed) {
     random.setSeed(seed);
   }
+
+  /**
+   * Returns this character's star count.
+   */
+  public void setMyTurn(boolean valor){this.myTurn = valor;}
 
   /**
    * Returns the character's name.

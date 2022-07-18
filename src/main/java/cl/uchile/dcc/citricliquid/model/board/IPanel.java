@@ -13,7 +13,7 @@ public interface IPanel {
 
     Set<Panel> getNextPanels();
 
-    void addNextPanel(Panel panel);
+    void addNextPanel(AbstractPanel panel);
 
     Set<Player> getPlayersOnPanel();
 
@@ -22,4 +22,6 @@ public interface IPanel {
     void removePlayerOnPanel(Player player);
 
     void activatedBy(@NotNull Player player);
+
+
 }

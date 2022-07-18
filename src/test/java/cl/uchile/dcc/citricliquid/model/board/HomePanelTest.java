@@ -46,7 +46,7 @@ public class HomePanelTest {
         testSeed = new Random().nextLong();
         suguri = new Player(PLAYER_NAME, BASE_HP, BASE_ATK, BASE_DEF, BASE_EVD);
         suguri2 = new Player(PLAYER_NAME2, BASE_HP, BASE_ATK, BASE_DEF, BASE_EVD);
-        testHomePanel = new HomePanel(PanelType.HOME,5,suguri);
+        testHomePanel = new HomePanel(PanelType.HOME,5);
     }
     @Test
     public void constructorTest() {
@@ -122,6 +122,8 @@ public class HomePanelTest {
     }
     @Test
     public void homePanelTest() {
+        testHomePanel.setOwner(suguri);
+
         assertEquals(suguri.getMaxHp(), suguri.getCurrentHp());
         testHomePanel.activatedBy(suguri);
         assertEquals(suguri.getMaxHp(), suguri.getCurrentHp());

@@ -1,9 +1,6 @@
 package cl.uchile.dcc.citricliquid.controller;
 
-import cl.uchile.dcc.citricliquid.controller.states.State;
 import cl.uchile.dcc.citricliquid.controller.states.Turn;
-import cl.uchile.dcc.citricliquid.exceptions.InvalidStateOperationException;
-import cl.uchile.dcc.citricliquid.model.Characters.AbstractCharacter;
 import cl.uchile.dcc.citricliquid.model.Characters.BossUnit;
 import cl.uchile.dcc.citricliquid.model.Characters.Player;
 import cl.uchile.dcc.citricliquid.model.Characters.WildUnit;
@@ -11,7 +8,6 @@ import cl.uchile.dcc.citricliquid.model.board.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class GameController {
     private Player player;
@@ -76,7 +72,7 @@ public class GameController {
      */
 
     public HomePanel createHomePanel(int number){
-        HomePanel panel = new HomePanel(PanelType.HOME,number,player);
+        HomePanel panel = new HomePanel(PanelType.HOME,number);
         allPanels.add(panel);
         return panel;
     }
@@ -173,8 +169,52 @@ public class GameController {
     }
 
     /**
-     * *
+     * A panel is add as a next panel of on other panel
+     * @param actualPanel the panel that will have a next panel
+     * @param nextPanel the panel that is add next
      */
+
+    public void setNextPanel(AbstractPanel actualPanel, AbstractPanel nextPanel){actualPanel.addNextPanel(nextPanel);}
+
+    /**
+     * set a player as a owner of a home panel
+     * @param player the panel that will have a next panel
+     * @param homepanel the panel that is add next
+     */
+
+    public void setPlayerHome(Player player, HomePanel homepanel){homepanel.setOwner(player);}
+
+    /**
+     * Returns the Set of all the panels created at this moment
+     */
+
+    public List<AbstractPanel> getAllPanels(){return allPanels;}
+
+    /**
+     * Returns the player's who turn is it now
+     * and if it is the first turn, the turn is set
+     * to the first player created
+     */
+
+    public Player getTurnOwner(){
+        getChapter();
+        Player player = allPlayers.get(turno-1-(4*(chapter-1)));
+        if(turno == 1){
+            player.setMyTurn(true);
+        }
+        return player;
+    }
+
+    public int getChapter() {
+        chapter =((turno-1)/4)+1;
+        return chapter;
+    }
+
+    /**
+     * Returns the current chapter
+     */
+
+
 
     private final List<WildUnit> WildUnits =
             List.of(new WildUnit("Chicken",3,-1,-1,1),
