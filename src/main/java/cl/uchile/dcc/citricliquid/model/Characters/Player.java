@@ -17,6 +17,8 @@ public class Player extends AbstractCharacter {
   private int wins;
   private boolean myTurn;
 
+  private AbstractPanel panel;
+
   /**
    * Creates a new player.
    *

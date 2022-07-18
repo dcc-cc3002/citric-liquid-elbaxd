@@ -1,5 +1,7 @@
 package cl.uchile.dcc.citricliquid.model.Characters;
 
+import cl.uchile.dcc.citricliquid.model.board.AbstractPanel;
+
 import java.util.Random;
 
 public abstract class AbstractCharacter implements ICharacter {
@@ -51,6 +53,16 @@ public abstract class AbstractCharacter implements ICharacter {
     public void setSeed(final long seed) {
         random.setSeed(seed);
     }
+
+    /**
+     * Set the new panel where the character will go or be set on.
+     */
+    public void setPanel(AbstractPanel panel){this.panel = panel;}
+
+    /**
+     * Get the current panel where the character is.
+     */
+    public AbstractPanel getPanel(){return this.panel}
 
     /**
      * Returns the character's name.

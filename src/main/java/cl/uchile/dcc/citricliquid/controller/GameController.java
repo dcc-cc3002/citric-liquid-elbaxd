@@ -224,20 +224,47 @@ public class GameController {
         turno +=1;
         Player iniciar = getTurnOwner();
         iniciar.setMyTurn(true);
-        int chapter = getChapter();
+        // int chapter = getChapter();
         turn.start();
     }
 
     /**
      * Do a normaCheck and a normaClear if the player is in a home panel
      */
-
     public void normaCheckClear(Player player){
-
+        if (player.getPanel().getType()==PanelType.HOME){
+            player.getPanel().normaCheck(player);
+        }
     }
 
+    /**
+     *  moves the player through the panels of the table.
+     */
+    public void movement(Player player,int moves,AbstractPanel panel){
+        Set<Player> playersOnPanel = panel.getPlayersOnPanel();
+        player.setPanel();
+        if(){
 
+        }
+    }
 
+    /**
+     *  Stops the player's movement if it´s passes through a home panel
+     *  or if another player is in the panel
+     *  or if the next panels are more than one for the actual panel.
+     */
+
+    public void endMovement(Player player){
+        if(player.getPanel().getType()==PanelType.HOME && player.getPanel().getOwner()==player){
+            endTurn();
+        }
+        if(player.getPanel().getPlayersOnPanel().size()!=0){
+            endTurn();
+        }
+        if(player.getPanel().getNextPanels().size()>1){
+            endTurn();
+        }
+    }
     private final List<WildUnit> WildUnits =
             List.of(new WildUnit("Chicken",3,-1,-1,1),
                     new WildUnit("Robo Ball",3,-1,1,-1),

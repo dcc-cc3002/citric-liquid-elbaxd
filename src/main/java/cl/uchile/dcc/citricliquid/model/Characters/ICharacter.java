@@ -1,5 +1,7 @@
 package cl.uchile.dcc.citricliquid.model.Characters;
 
+import cl.uchile.dcc.citricliquid.model.board.AbstractPanel;
+
 import java.util.Random;
 
 public interface ICharacter {
@@ -29,7 +31,13 @@ public interface ICharacter {
      * Set the panel of the character
      */
 
-    void setPanel(Abst)
+    void setPanel(AbstractPanel panel);
+
+    /**
+     * Get the panel of the character
+     */
+
+    AbstractPanel getPanel();
 
     /**
      * Returns the object's name.
