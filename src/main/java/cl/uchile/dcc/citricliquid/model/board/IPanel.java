@@ -24,4 +24,8 @@ public interface IPanel {
     void activatedBy(@NotNull Player player);
 
 
+    void normaCheck(@NotNull Player player);
+
+    Player getOwner();
 }
+

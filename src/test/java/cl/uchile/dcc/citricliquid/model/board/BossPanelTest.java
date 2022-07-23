@@ -97,8 +97,8 @@ public class BossPanelTest {
     @Test
     public void nextPanelTest() {
         assertTrue(testBossPanel.getNextPanels().isEmpty());
-        final var expectedPanel1 = new Panel(PanelType.BOSS);
-        final var expectedPanel2 = new Panel(PanelType.BOSS);
+        final var expectedPanel1 = new BossPanel(PanelType.BOSS,1);
+        final var expectedPanel2 = new BossPanel(PanelType.BOSS,2);
 
         testBossPanel.addNextPanel(expectedPanel1);
         assertEquals(1, testBossPanel.getNextPanels().size());

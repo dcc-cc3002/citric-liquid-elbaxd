@@ -15,6 +15,7 @@ import java.util.Random;
  */
 public class Player extends AbstractCharacter {
   private final Random random;
+  private int recovery;
   private int normaLevel;
   private int stars;
   private int wins;
@@ -22,6 +23,7 @@ public class Player extends AbstractCharacter {
 
   private NormaGoal normaGoal;
   private AbstractPanel panel;
+
 
   /**
    * Creates a new player.
@@ -46,6 +48,7 @@ public class Player extends AbstractCharacter {
     this.normaLevel = 1;
     this.stars = 0;
     this.wins = 0;
+    this.recovery = 0;
   }
 
   /**
@@ -101,6 +104,16 @@ public class Player extends AbstractCharacter {
    */
   public void setMyTurn(boolean valor){this.myTurn = valor;}
 
+  /**
+   * Set the new panel where the character will go or be set on.
+   */
+  @Override
+  public void setPanel(AbstractPanel panel){this.panel = panel;}
+  /**
+   * Get the current panel where the character is.
+   */
+  @Override
+  public AbstractPanel getPanel(){return this.panel;}
   /**
    * Returns the character's name.
    */
@@ -210,5 +223,23 @@ public class Player extends AbstractCharacter {
 
   public void setNormaGoal(NormaGoal goal) {
 
+  }
+
+  /**
+   * Returns the recovery value
+   */
+
+  public int getRecovery(){
+    return this.recovery;
+  }
+
+  /**
+   * sets the value of recovery
+   * @param value
+   *      is the new value of recovery, with a minimum of 0
+   */
+
+  public void setRecovery(int value){
+    this.recovery = (Math.max(value, 0));
   }
 }

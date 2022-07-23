@@ -13,11 +13,11 @@ import java.util.Set;
 
 public class GameController {
     private Player player;
-    List<AbstractPanel> allPanels = new ArrayList<>();
-    List<Player> allPlayers = new ArrayList<>();
-    int turno = 1;
-    int chapter = 1;
-    Turn turn = new Turn();
+    public List<AbstractPanel> allPanels = new ArrayList<>();
+    public List<Player> allPlayers = new ArrayList<>();
+    public int turno = 1;
+    public int chapter = 1;
+    public Turn turn = new Turn();
 
     /**
      * Creates a BonusPanel adding this new panel to the set of all panels
@@ -173,7 +173,7 @@ public class GameController {
     /**
      * A panel ,or more than one, is add as a next panel of on other panel
      * @param actualPanel the panel that will have a next panel
-     * @param nextPanel the panel or panels that is adding next
+     * @param nextPanels the panel or panels that is adding next
      */
 
     public void setNextPanel(AbstractPanel actualPanel, Set<AbstractPanel> nextPanels){
@@ -184,8 +184,8 @@ public class GameController {
 
     /**
      * set a player as a owner of a home panel
-     * @param player the panel that will have a next panel
-     * @param homepanel the panel that is add next
+     * @param player the player that will have a Home panel
+     * @param homepanel the Home panel that will have player as owner
      */
 
     public void setPlayerHome(Player player, HomePanel homepanel){homepanel.setOwner(player);}
@@ -206,6 +206,24 @@ public class GameController {
     }
 
     /**
+     * Enters the state of recovery and check if the player can be recovered
+     * player.roll is the dice
+     */
+
+    public void recovery(){
+        Player player = getTurnOwner();
+        if(player.roll()>=(8-player.getRecovery())){
+            player.setCurrentHp(player.getMaxHp());
+            player.setRecovery(0);
+        }
+        else{
+            player.setRecovery(player.getRecovery()+1);
+        }
+        turn.endRecovery();
+        endTurn();
+    }
+
+    /**
      * Returns the player's who turn is it now
      * and if it is the first turn, the turn is set
      * to the first player created
@@ -218,6 +236,31 @@ public class GameController {
             player.setMyTurn(true);
         }
         return player;
+    }
+
+    /**
+     * sets the new state of draw card
+     */
+
+    public void drawCard(){
+        turn.move();
+        movePlayer();
+    }
+
+    /**
+     * stars the turn of the current player
+     */
+
+    public void startTurn(){
+        Player player = getTurnOwner();
+        if (player.getCurrentHp() == 0){
+            turn.isKO();
+            recovery();
+        }
+        else{
+            turn.notKO();
+            drawCard();
+        }
     }
 
     /**
@@ -252,46 +295,82 @@ public class GameController {
     }
 
     /**
+     * delegates the job to the movement method to move the player
+     */
+
+    public void movePlayer() {
+        Player player = getTurnOwner();
+        int moves = player.roll();
+        AbstractPanel panel = player.getPanel();
+        movement(player, moves, panel);
+    }
+
+    /**
      *  moves the player through the panels of the table.
      */
     public void movement(Player player,int moves,AbstractPanel panel){
         Set<Player> playersOnPanel = panel.getPlayersOnPanel();
-        player.setPanel(panel);
-        moves-=1
-        if(moves==0){
-            endTurn();
+        if(playersOnPanel.size() != 0 && player.getPanel() != panel) {
+            boolean wantFight = wantToFight(playersOnPanel);
+            if (wantFight) {
+                player.getPanel().removePlayerOnPanel(player);
+                player.setPanel(panel);
+                panel.addPlayerOnPanel(player);
+                panel.activatedBy(player);
+            }
         }
-        if(){
+        if(panel.getType() == PanelType.HOME && player.getPanel()!=panel){
+            if(panel.getOwner()==player) {
+                boolean wantHome = wantHome();
+                if (wantHome) {
+                    player.getPanel().removePlayerOnPanel(player);
+                    player.setPanel(panel);
+                    panel.addPlayerOnPanel(player);
+                    panel.activatedBy(player);
+                    endTurn();
+                }
+            }
+        }
 
+        Set<AbstractPanel> nextPanels = panel.getNextPanels();
+        List<AbstractPanel> panelList = new ArrayList<>(nextPanels.size());
+        panelList.addAll(nextPanels);
+
+        AbstractPanel nextPanel = panelList.get(0);
+        if (nextPanels.size()>1 && player.getPanel() != panel){
+            player.getPanel().removePlayerOnPanel(player);
+            player.setPanel(panel);
+            panel.addPlayerOnPanel(player);
+            panel.activatedBy(player);
+            turn.path();
         }
+        if (moves == 0){
+            player.getPanel().removePlayerOnPanel(player);
+            player.setPanel(panel);
+            panel.addPlayerOnPanel(player);
+            panel.activatedBy(player);
+            turn.stayPanel();
+        }
+        moves =-1;
+        movement(player,moves,nextPanel);
+
     }
 
     /**
-     *  Stops the player's movement if it´s passes through a home panel
-     *  or if another player is in the panel
-     *  or if the next panels are more than one for the actual panel.
+     * Returns a boolean value depending on the decision of the user
      */
 
-    public void endMovement(Player player){
-        if(player.getPanel().getType()==PanelType.HOME && player.getPanel().getOwner()==player){
-            endTurn();
-        }
-        if(player.getPanel().getPlayersOnPanel().size()!=0){
-            endTurn();
-        }
-        if(player.getPanel().getNextPanels().size()>1){
-            endTurn();
-        }
+    private boolean wantHome() {
+        return true;
     }
-    private final List<WildUnit> WildUnits =
-            List.of(new WildUnit("Chicken",3,-1,-1,1),
-                    new WildUnit("Robo Ball",3,-1,1,-1),
-                    new WildUnit("Seagull",3,1,-1,-1));
 
-    private final List<BossUnit> BossUnits =
-            List.of(new BossUnit("Store Manager",8,+3,+2,-1),
-                    new BossUnit("Shifu Robot",7,+2,+3,-2),
-                    new BossUnit("Flying Castle",10,+2,+1,-3));
+    /**
+     * returns a boolean value that represents if the user wants to fight or not
+     * @param players is the set of players in the panel that the user can choose one of them to battle.
+     */
 
-
+    private boolean wantToFight(Set<Player> players) {
+        turn.fight();
+        return true;
+    }
 }

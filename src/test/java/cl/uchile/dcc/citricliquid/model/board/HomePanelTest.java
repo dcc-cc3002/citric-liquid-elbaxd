@@ -105,8 +105,8 @@ public class HomePanelTest {
     @Test
     public void nextPanelTest() {
         assertTrue(testHomePanel.getNextPanels().isEmpty());
-        final var expectedPanel1 = new Panel(PanelType.NEUTRAL);
-        final var expectedPanel2 = new Panel(PanelType.NEUTRAL);
+        final var expectedPanel1 = new NeutralPanel(PanelType.NEUTRAL,1);
+        final var expectedPanel2 = new NeutralPanel(PanelType.NEUTRAL,2);
 
         testHomePanel.addNextPanel(expectedPanel1);
         assertEquals(1, testHomePanel.getNextPanels().size());

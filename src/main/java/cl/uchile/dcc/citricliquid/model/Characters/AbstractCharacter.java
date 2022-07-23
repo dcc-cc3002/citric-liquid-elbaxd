@@ -27,7 +27,6 @@ public abstract class AbstractCharacter implements ICharacter {
     public void increaseStarsBy(final int amount) {
         stars += amount;
     }
-
     /**
      * Returns this player's star count.
      */
@@ -35,14 +34,12 @@ public abstract class AbstractCharacter implements ICharacter {
     public int getStars() {
         return stars;
     }
-
     /**
      * Returns a uniformly distributed random value in [1, 6].
      */
     public int roll() {
         return random.nextInt(6) + 1;
     }
-
     /**
      * Set's the seed for this player's random number generator.
      *
@@ -53,17 +50,15 @@ public abstract class AbstractCharacter implements ICharacter {
     public void setSeed(final long seed) {
         random.setSeed(seed);
     }
-
     /**
      * Set the new panel where the character will go or be set on.
      */
-    public void setPanel(AbstractPanel panel){this.panel = panel;}
-
+    public void setPanel(AbstractPanel panel){
+        this.panel = panel;}
     /**
      * Get the current panel where the character is.
      */
-    public AbstractPanel getPanel(){return this.panel}
-
+    public AbstractPanel getPanel(){return this.panel;}
     /**
      * Returns the character's name.
      */
@@ -71,7 +66,6 @@ public abstract class AbstractCharacter implements ICharacter {
     public String getName() {
         return name;
     }
-
     /**
      * Returns the character's max hit points.
      */
@@ -79,7 +73,6 @@ public abstract class AbstractCharacter implements ICharacter {
     public int getMaxHp() {
         return maxHp;
     }
-
     /**
      * Returns the current character's attack points.
      */
@@ -87,7 +80,6 @@ public abstract class AbstractCharacter implements ICharacter {
     public int getAtk() {
         return atk;
     }
-
     /**
      * Returns the current character's defense points.
      */
@@ -95,7 +87,6 @@ public abstract class AbstractCharacter implements ICharacter {
     public int getDef() {
         return def;
     }
-
     /**
      * Returns the current character's evasion points.
      */
@@ -103,7 +94,6 @@ public abstract class AbstractCharacter implements ICharacter {
     public int getEvd() {
         return evd;
     }
-
     /**
      * Returns the current hit points of the character.
      */
@@ -111,7 +101,6 @@ public abstract class AbstractCharacter implements ICharacter {
     public int getCurrentHp() {
         return currentHp;
     }
-
     /**
      * Sets the current character's hit points.
      *
@@ -122,7 +111,6 @@ public abstract class AbstractCharacter implements ICharacter {
     public void setCurrentHp(final int newHp) {
         this.currentHp = Math.max(Math.min(newHp, maxHp), 0);
     }
-
     /**
      * Reduces this player's star count by a given amount.
      *
@@ -131,7 +119,6 @@ public abstract class AbstractCharacter implements ICharacter {
     public void reduceStarsBy(final int amount) {
         stars = Math.max(0, stars - amount);
     }
-
     /**
      * Returns a copy of this character.
      */
