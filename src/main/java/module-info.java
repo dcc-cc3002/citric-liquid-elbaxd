@@ -1,11 +1,6 @@
-module cl.uchile.dcc.citricliquid {
+module citric.liquid.main {
+  exports com.github.cc3002.citricliquid.gui;
+  requires java.desktop;
   requires javafx.controls;
-  requires javafx.fxml;
-
-  requires org.controlsfx.controls;
   requires org.jetbrains.annotations;
-    requires java.desktop;
-
-    exports cl.uchile.dcc.citricliquid.view;
-  opens cl.uchile.dcc.citricliquid.view to javafx.fxml;
 }

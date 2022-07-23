@@ -1,77 +1,88 @@
-@file:Suppress("SpellCheckingInspection")
-
-val junitVersion: String by project
-val controlsfxVersion: String by project
-val annotationVersion: String by project
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
   java
-  application
-  id("org.openjfx.javafxplugin") version "0.0.10"
-  id("org.beryx.jlink") version "2.24.1"
+  id("application")
+  id("org.openjfx.javafxplugin") version "0.0.8"
 }
-
-
-val group = "cl.uchile.dcc"
-val version = "1.1.222804"
 
 application {
-  mainClass.set("cl.uchile.dcc.citricliquid.view.CitricLiquidApp")
+  mainClassName = "$moduleName/com.github.cc3002.citricliquid.gui.CitricLiquid"
 }
 
-javafx {
-  version = "18-ea+6"
-  modules = mutableListOf("javafx.controls", "javafx.fxml")
-}
+group = "com.github.cc3002"
+version = "1.0-RELEASE"
 
 repositories {
   mavenCentral()
 }
 
-dependencies {
-  implementation(group = "org.openjfx", name = "javafx", version = "18.0.1")
-  implementation(group = "org.jetbrains", name = "annotations", version = annotationVersion)
-  implementation(group = "org.controlsfx", name = "controlsfx", version = controlsfxVersion)
-    implementation("org.junit.jupiter:junit-jupiter:5.8.1")
-    implementation("org.junit.jupiter:junit-jupiter:5.8.1")
-    testImplementation(
-    group = "org.junit.jupiter", name = "junit-jupiter-api", version = junitVersion
-  )
-  testRuntimeOnly(
-    group = "org.junit.jupiter",
-    name = "junit-jupiter-engine",
-    version = junitVersion
-  )
-}
+tasks.named<Test>("test") {
+  testLogging {
+    // set options for log level LIFECYCLE
+    events(TestLogEvent.FAILED,
+           TestLogEvent.PASSED,
+           TestLogEvent.SKIPPED,
+           TestLogEvent.STANDARD_OUT)
+    exceptionFormat = TestExceptionFormat.SHORT
 
-tasks.withType(JavaCompile::class.java) {
-  options.encoding = "UTF-8"
-  options.isFork = true
-  options.isIncremental = true
-  options.isDebug = true
-//  options.isVerbose = true
-}
+    showExceptions = true
+    showCauses = true
+    showStackTraces = true
 
-tasks.withType<Test> {
-  useJUnitPlatform()
-}
-
-jlink {
-    imageZip.set(project.file("${buildDir}/distributions/app-${javafx.platform.classifier}.zip"))
-    options.set(
-        mutableListOf(
-            "--strip-debug",
-            "--compress",
-            "2",
-            "--no-header-files",
-            "--no-man-pages"
-        )
-    )
-    launcher {
-        name = "app"
+    // set options for log level DEBUG and INFO
+    debug {
+      events(TestLogEvent.STARTED,
+             TestLogEvent.FAILED,
+             TestLogEvent.PASSED,
+             TestLogEvent.SKIPPED,
+             TestLogEvent.STANDARD_ERROR,
+             TestLogEvent.STANDARD_OUT)
+      exceptionFormat = TestExceptionFormat.FULL
     }
+    info.events = debug.events
+    info.exceptionFormat = debug.exceptionFormat
+
+  }
+
+  useJUnitPlatform()
+
+  addTestListener(object : TestListener {
+    override fun beforeSuite(suite: TestDescriptor) {}
+    override fun beforeTest(testDescriptor: TestDescriptor) {}
+    override fun afterTest(testDescriptor: TestDescriptor, result: TestResult) {}
+
+    override fun afterSuite(suite: TestDescriptor, result: TestResult) {
+      if (suite.parent == null) { // root suite
+        logger.quiet("----")
+        logger.quiet("Test result: ${result.resultType}")
+        logger.quiet(
+            "Test summary: ${result.testCount} tests, " +
+                "${result.successfulTestCount} succeeded, " +
+                "${result.failedTestCount} failed, " +
+                "${result.skippedTestCount} skipped"
+        )
+
+      }
+    }
+  })
 }
 
-tasks.withType<org.beryx.jlink.JlinkZipTask> {
-    group = "distribution"
+dependencies {
+  implementation(group = "org.openjfx", name = "javafx", version = "14-ea+6", ext = "pom")
+  implementation("org.jetbrains:annotations:19.0.0")
+  testImplementation(group = "org.junit.jupiter", name = "junit-jupiter-api",
+                     version = "5.1.0")
+  testRuntimeOnly(group = "org.junit.jupiter", name = "junit-jupiter-engine",
+                  version = "5.1.0")
 }
+
+javafx {
+  version = "14-ea+6"
+  modules = mutableListOf("javafx.controls")
+}
+configure<JavaPluginConvention> {
+  sourceCompatibility = JavaVersion.VERSION_11
+}
+
