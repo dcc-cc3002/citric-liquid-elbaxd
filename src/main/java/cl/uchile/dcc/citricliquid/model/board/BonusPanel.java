@@ -25,4 +25,13 @@ public class BonusPanel extends AbstractPanel{
         player.increaseStarsBy(player.roll() * Math.min(player.getNormaLevel(), 3));
     }
 
+    @Override
+    public void normaCheck(@NotNull Player player) {
+
+    }
+
+    @Override
+    public Player getOwner() {
+        return null;
+    }
 }

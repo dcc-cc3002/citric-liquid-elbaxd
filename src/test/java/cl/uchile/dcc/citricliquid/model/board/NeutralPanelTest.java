@@ -102,8 +102,8 @@ public class NeutralPanelTest {
     @Test
     public void nextPanelTest() {
         assertTrue(testNeutralPanel.getNextPanels().isEmpty());
-        final var expectedPanel1 = new Panel(PanelType.NEUTRAL);
-        final var expectedPanel2 = new Panel(PanelType.NEUTRAL);
+        final var expectedPanel1 = new NeutralPanel(PanelType.NEUTRAL,1);
+        final var expectedPanel2 = new NeutralPanel(PanelType.NEUTRAL,1);
 
         testNeutralPanel.addNextPanel(expectedPanel1);
         assertEquals(1, testNeutralPanel.getNextPanels().size());

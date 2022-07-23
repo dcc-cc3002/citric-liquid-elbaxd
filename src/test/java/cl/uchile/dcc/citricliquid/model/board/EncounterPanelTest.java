@@ -95,8 +95,8 @@ public class EncounterPanelTest {
     @Test
     public void nextPanelTest() {
         assertTrue(testEncounterPanel.getNextPanels().isEmpty());
-        final var expectedPanel1 = new Panel(PanelType.ENCOUNTER);
-        final var expectedPanel2 = new Panel(PanelType.ENCOUNTER);
+        final var expectedPanel1 = new EncounterPanel(PanelType.ENCOUNTER,1);
+        final var expectedPanel2 = new EncounterPanel(PanelType.ENCOUNTER,1);
 
         testEncounterPanel.addNextPanel(expectedPanel1);
         assertEquals(1, testEncounterPanel.getNextPanels().size());

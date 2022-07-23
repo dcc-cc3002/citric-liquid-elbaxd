@@ -25,4 +25,13 @@ public class DropPanel extends AbstractPanel{
     }
 
 
+    @Override
+    public void normaCheck(@NotNull Player player) {
+
+    }
+
+    @Override
+    public Player getOwner() {
+        return null;
+    }
 }

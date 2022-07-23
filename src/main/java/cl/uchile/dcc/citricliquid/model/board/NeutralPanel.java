@@ -1,6 +1,7 @@
 package cl.uchile.dcc.citricliquid.model.board;
 
 import cl.uchile.dcc.citricliquid.model.Characters.Player;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,5 +21,15 @@ public class NeutralPanel extends AbstractPanel{
      */
     public void nothing(){
         System.out.println("Literal no hace nada este panel");
+    }
+
+    @Override
+    public void normaCheck(@NotNull Player player) {
+
+    }
+
+    @Override
+    public Player getOwner() {
+        return null;
     }
 }

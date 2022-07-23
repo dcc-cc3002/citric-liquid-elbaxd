@@ -156,17 +156,6 @@ public class ControllerTest {
     }
 
     @Test
-    public void drawCard(){
-        gameController.turn.notKO();
-        gameController.turn.playCard();
-        assertTrue(gameController.turn.isPlayCard());
-        assertFalse(gameController.turn.isMove());
-        gameController.drawCard();
-        assertFalse(gameController.turn.isPlayCard());
-        assertTrue(gameController.turn.isMove());
-    }
-
-    @Test
     public void startTurnTest(){
         gameController.createPlayer("Suguri",4,1,-1,2,testHomePanel);
         Player player = gameController.getTurnOwner();
@@ -178,7 +167,7 @@ public class ControllerTest {
         gameController.turn.stayPanel();
         gameController.turn.end();
         gameController.turn.start();
-        player.setCurrentHP(0);
+        player.setCurrentHp(0);
         gameController.startTurn();
         assertTrue(gameController.turn.isIsKO());
     }
@@ -243,13 +232,13 @@ public class ControllerTest {
     public void setNormaGoalTest(){
         gameController.createPlayer("Suguri",4,1,-1,2,testHomePanel);
         assertEquals(NormaGoal.STARS,gameController.allPlayers.get(0).getNormaGoal());
-        gameController.setCurrPlayerNormaGoal(NormaGoal.WINS);
+        gameController.setPlayerGoal(NormaGoal.WINS);
         assertNotEquals(NormaGoal.STARS,gameController.allPlayers.get(0).getNormaGoal());
         assertEquals(NormaGoal.WINS,gameController.allPlayers.get(0).getNormaGoal());
-        gameController.setCurrPlayerNormaGoal(NormaGoal.WINS);
+        gameController.setPlayerGoal(NormaGoal.WINS);
         assertNotEquals(NormaGoal.STARS,gameController.allPlayers.get(0).getNormaGoal());
         assertEquals(NormaGoal.WINS,gameController.allPlayers.get(0).getNormaGoal());
-        gameController.setCurrPlayerNormaGoal(NormaGoal.STARS);
+        gameController.setPlayerGoal(NormaGoal.STARS);
         assertNotEquals(NormaGoal.WINS,gameController.allPlayers.get(0).getNormaGoal());
         assertEquals(NormaGoal.STARS,gameController.allPlayers.get(0).getNormaGoal());
     }
@@ -265,7 +254,7 @@ public class ControllerTest {
         test.add(gameController.allPlayers.get(0));
         test.add(suguri);
         gameController.createBossPanel(2);
-        gameController.allPanels.get(1).addPla2Pan(suguri);
+        gameController.allPanels.get(1).addPlayerOnPanel(suguri);
         gameController.createHomePanel(3);
         HomePanel panel = (HomePanel) gameController.allPanels.get(2);
         gameController.setPlayerHome(gameController.getTurnOwner(),panel);
@@ -294,7 +283,7 @@ public class ControllerTest {
         gameController.turn.move();
         assertTrue(gameController.turn.isMove());
         gameController.movePlayer();
-        assertTrue(gameController.turn.isWantFight());
+        assertTrue(gameController.turn.isFight());
         assertEquals(gameController.allPanels.get(1),gameController.getTurnOwner().getPanel());
         assertEquals(test,gameController.getTurnOwner().getPanel().getPlayersOnPanel());
         assertEquals(0,gameController.allPanels.get(0).getPlayersOnPanel().size());
@@ -302,7 +291,7 @@ public class ControllerTest {
         gameController.turn.noFight();
         assertTrue(gameController.turn.isMove());
         gameController.movePlayer();
-        assertTrue(gameController.turn.isWantHome());
+        assertTrue(gameController.turn.isStayHome());
         assertEquals(gameController.allPanels.get(2),gameController.getTurnOwner().getPanel());
         assertEquals(1,gameController.allPanels.get(1).getPlayersOnPanel().size());
         gameController.turn.noHome();
@@ -314,8 +303,8 @@ public class ControllerTest {
         gameController.movePlayer();
         assertFalse(gameController.turn.isMove());
         assertFalse(gameController.turn.isPath());
-        assertFalse(gameController.turn.isWantHome());
-        assertFalse(gameController.turn.isWantFight());
+        assertFalse(gameController.turn.isStayHome());
+        assertFalse(gameController.turn.isFight());
         assertTrue(gameController.turn.isStayPanel());
     }
 }

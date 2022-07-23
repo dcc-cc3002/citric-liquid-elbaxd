@@ -99,8 +99,8 @@ public class BonusPanelTest {
     @Test
     public void nextPanelTest() {
         assertTrue(testBonusPanel.getNextPanels().isEmpty());
-        final var expectedPanel1 = new Panel(PanelType.BONUS);
-        final var expectedPanel2 = new Panel(PanelType.BONUS);
+        final var expectedPanel1 = new BonusPanel(PanelType.BONUS,1);
+        final var expectedPanel2 = new BonusPanel(PanelType.BONUS,2);
 
         testBonusPanel.addNextPanel(expectedPanel1);
         assertEquals(1, testBonusPanel.getNextPanels().size());

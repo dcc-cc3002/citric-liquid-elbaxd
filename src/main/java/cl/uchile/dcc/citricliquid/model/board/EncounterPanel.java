@@ -1,5 +1,8 @@
 package cl.uchile.dcc.citricliquid.model.board;
 
+import cl.uchile.dcc.citricliquid.model.Characters.Player;
+import org.jetbrains.annotations.NotNull;
+
 public class EncounterPanel extends AbstractPanel{
     /**
      * Creates a new EncounterPanel.
@@ -15,5 +18,15 @@ public class EncounterPanel extends AbstractPanel{
      */
     public void battle(){
         System.out.println("Jaja combate de jefe empezado");
+    }
+
+    @Override
+    public void normaCheck(@NotNull Player player) {
+
+    }
+
+    @Override
+    public Player getOwner() {
+        return null;
     }
 }

@@ -97,8 +97,8 @@ public class DropPanelTest {
     @Test
     public void nextPanelTest() {
         assertTrue(testDropPanel.getNextPanels().isEmpty());
-        final var expectedPanel1 = new Panel(PanelType.DROP);
-        final var expectedPanel2 = new Panel(PanelType.DROP);
+        final var expectedPanel1 = new DropPanel(PanelType.DROP,1);
+        final var expectedPanel2 = new DropPanel(PanelType.DROP,2);
 
         testDropPanel.addNextPanel(expectedPanel1);
         assertEquals(1, testDropPanel.getNextPanels().size());

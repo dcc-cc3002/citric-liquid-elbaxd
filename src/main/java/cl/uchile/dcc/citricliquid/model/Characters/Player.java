@@ -224,6 +224,13 @@ public class Player extends AbstractCharacter {
   public void setNormaGoal(NormaGoal goal) {
 
   }
+  /**
+   * Returns the current norma goal
+   */
+
+  public NormaGoal getNormaGoal(){
+    return this.normaGoal;
+  }
 
   /**
    * Returns the recovery value

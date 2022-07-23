@@ -176,11 +176,9 @@ public class GameController {
      * @param nextPanels the panel or panels that is adding next
      */
 
-    public void setNextPanel(AbstractPanel actualPanel, Set<AbstractPanel> nextPanels){
-        for (AbstractPanel p : nextPanels) {
-            actualPanel.addNextPanel(p);
+    public void setNextPanel(AbstractPanel actualPanel, AbstractPanel nextPanel){
+        actualPanel.addNextPanel(nextPanel);
         }
-    }
 
     /**
      * set a player as a owner of a home panel
@@ -239,15 +237,6 @@ public class GameController {
     }
 
     /**
-     * sets the new state of draw card
-     */
-
-    public void drawCard(){
-        turn.move();
-        movePlayer();
-    }
-
-    /**
      * stars the turn of the current player
      */
 
@@ -259,7 +248,6 @@ public class GameController {
         }
         else{
             turn.notKO();
-            drawCard();
         }
     }
 
