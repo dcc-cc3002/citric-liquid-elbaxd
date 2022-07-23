@@ -231,10 +231,10 @@ public class ControllerTest {
     @Test
     public void setNormaGoalTest(){
         gameController.createPlayer("Suguri",4,1,-1,2,testHomePanel);
-        assertEquals(NormaGoal.STARS,gameController.allPlayers.get(0).getNormaGoal());
-        gameController.setPlayerGoal(NormaGoal.WINS);
-        assertNotEquals(NormaGoal.STARS,gameController.allPlayers.get(0).getNormaGoal());
         assertEquals(NormaGoal.WINS,gameController.allPlayers.get(0).getNormaGoal());
+        gameController.setPlayerGoal(NormaGoal.STARS);
+        assertEquals(NormaGoal.STARS,gameController.allPlayers.get(0).getNormaGoal());
+        assertNotEquals(NormaGoal.WINS,gameController.allPlayers.get(0).getNormaGoal());
         gameController.setPlayerGoal(NormaGoal.WINS);
         assertNotEquals(NormaGoal.STARS,gameController.allPlayers.get(0).getNormaGoal());
         assertEquals(NormaGoal.WINS,gameController.allPlayers.get(0).getNormaGoal());

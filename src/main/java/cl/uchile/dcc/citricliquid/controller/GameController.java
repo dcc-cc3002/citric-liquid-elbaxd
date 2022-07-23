@@ -237,6 +237,15 @@ public class GameController {
     }
 
     /**
+     * sets the new state of draw card
+     */
+
+    public void drawCard(){
+        turn.move();
+        movePlayer();
+    }
+
+    /**
      * stars the turn of the current player
      */
 
@@ -248,6 +257,7 @@ public class GameController {
         }
         else{
             turn.notKO();
+            drawCard();
         }
     }
 

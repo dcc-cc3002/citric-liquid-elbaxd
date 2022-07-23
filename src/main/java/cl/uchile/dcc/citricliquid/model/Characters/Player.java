@@ -222,7 +222,7 @@ public class Player extends AbstractCharacter {
   }
 
   public void setNormaGoal(NormaGoal goal) {
-
+    this.normaGoal = goal;
   }
   /**
    * Returns the current norma goal
