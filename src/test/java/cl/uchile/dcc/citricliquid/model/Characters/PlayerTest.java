@@ -1,5 +1,6 @@
-package cl.uchile.dcc.citricliquid.model;
+package cl.uchile.dcc.citricliquid.model.Characters;
 
+import cl.uchile.dcc.citricliquid.model.Characters.Player;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
@@ -45,8 +46,8 @@ public class PlayerTest {
     Assertions.assertEquals(2, suguri.getCurrentHp());
     suguri.setCurrentHp(-1);
     Assertions.assertEquals(0, suguri.getCurrentHp());
-    suguri.setCurrentHp(5);
-    Assertions.assertEquals(4, suguri.getCurrentHp());
+    suguri.setCurrentHp(3);
+    Assertions.assertEquals(3, suguri.getCurrentHp());
   }
 
   @Test

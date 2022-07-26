@@ -8,5 +8,5 @@ package cl.uchile.dcc.citricliquid.model.board;
  * @since 1.0
  */
 public enum PanelType {
-  BONUS, BOSS, DROP, ENCOUNTER, HOME, NEUTRAL
+  BONUS, BOSS, DROP, ENCOUNTER, HOME, NEUTRAL,DRAW
 }

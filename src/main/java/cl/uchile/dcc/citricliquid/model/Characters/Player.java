@@ -1,4 +1,7 @@
-package cl.uchile.dcc.citricliquid.model;
+package cl.uchile.dcc.citricliquid.model.Characters;
+
+import cl.uchile.dcc.citricliquid.model.NormaGoal;
+import cl.uchile.dcc.citricliquid.model.board.AbstractPanel;
 
 import java.util.Random;
 
@@ -10,19 +13,20 @@ import java.util.Random;
  * @version 1.1.222804
  * @since 1.0
  */
-public class Player {
+public class Player extends AbstractCharacter {
   private final Random random;
-  private final String name;
-  private final int maxHp;
-  private final int atk;
-  private final int def;
-  private final int evd;
+  private int recovery;
   private int normaLevel;
   private int stars;
-  private int currentHp;
+  private int wins;
+  private boolean myTurn;
+
+  private NormaGoal normaGoal;
+  private AbstractPanel panel;
+
 
   /**
-   * Creates a new character.
+   * Creates a new player.
    *
    * @param name
    *     the character's name.
@@ -37,18 +41,34 @@ public class Player {
    */
   public Player(final String name, final int hp, final int atk, final int def,
                 final int evd) {
-    this.name = name;
-    this.maxHp = currentHp = hp;
-    this.atk = atk;
-    this.def = def;
-    this.evd = evd;
-    normaLevel = 1;
-    random = new Random();
+    super(name,hp,atk,def,evd);
+    this.myTurn = false;
+    this.random = new Random();
+    this.normaGoal = NormaGoal.WINS;
+    this.normaLevel = 1;
+    this.stars = 0;
+    this.wins = 0;
+    this.recovery = 0;
+  }
+
+  /**
+   * Increases this player's wins count by an amount.
+   */
+  public void increaseWinsBy(final int amount) {
+    wins += amount;
+  }
+
+  /**
+   * Returns this player's wins count.
+   */
+  public int getWins() {
+    return wins;
   }
 
   /**
    * Increases this player's star count by an amount.
    */
+  @Override
   public void increaseStarsBy(final int amount) {
     stars += amount;
   }
@@ -56,8 +76,16 @@ public class Player {
   /**
    * Returns this player's star count.
    */
+  @Override
   public int getStars() {
     return stars;
+  }
+
+  /**
+          * Returns a uniformly distributed random value in [1, 6].
+          */
+  public int roll() {
+    return random.nextInt(6) + 1;
   }
 
   /**
@@ -66,20 +94,30 @@ public class Player {
    * <p>The random number generator is used for taking non-deterministic decisions, this method is
    * declared to avoid non-deterministic behaviour while testing the code.
    */
+  @Override
   public void setSeed(final long seed) {
     random.setSeed(seed);
   }
 
   /**
-   * Returns a uniformly distributed random value in [1, 6].
+   * Returns this character's star count.
    */
-  public int roll() {
-    return random.nextInt(6) + 1;
-  }
+  public void setMyTurn(boolean valor){this.myTurn = valor;}
 
+  /**
+   * Set the new panel where the character will go or be set on.
+   */
+  @Override
+  public void setPanel(AbstractPanel panel){this.panel = panel;}
+  /**
+   * Get the current panel where the character is.
+   */
+  @Override
+  public AbstractPanel getPanel(){return this.panel;}
   /**
    * Returns the character's name.
    */
+  @Override
   public String getName() {
     return name;
   }
@@ -87,6 +125,7 @@ public class Player {
   /**
    * Returns the character's max hit points.
    */
+  @Override
   public int getMaxHp() {
     return maxHp;
   }
@@ -94,6 +133,7 @@ public class Player {
   /**
    * Returns the current character's attack points.
    */
+  @Override
   public int getAtk() {
     return atk;
   }
@@ -101,6 +141,7 @@ public class Player {
   /**
    * Returns the current character's defense points.
    */
+  @Override
   public int getDef() {
     return def;
   }
@@ -108,6 +149,7 @@ public class Player {
   /**
    * Returns the current character's evasion points.
    */
+  @Override
   public int getEvd() {
     return evd;
   }
@@ -129,6 +171,7 @@ public class Player {
   /**
    * Returns the current hit points of the character.
    */
+  @Override
   public int getCurrentHp() {
     return currentHp;
   }
@@ -139,6 +182,7 @@ public class Player {
    * <p>The character's hit points have a constraint to always be between 0 and maxHP, both
    * inclusive.
    */
+  @Override
   public void setCurrentHp(final int newHp) {
     this.currentHp = Math.max(Math.min(newHp, maxHp), 0);
   }
@@ -171,9 +215,38 @@ public class Player {
   }
 
   /**
-   * Returns a copy of this character.
+   * Returns a copy of this player.
    */
   public Player copy() {
     return new Player(name, maxHp, atk, def, evd);
+  }
+
+  public void setNormaGoal(NormaGoal goal) {
+    this.normaGoal = goal;
+  }
+  /**
+   * Returns the current norma goal
+   */
+
+  public NormaGoal getNormaGoal(){
+    return this.normaGoal;
+  }
+
+  /**
+   * Returns the recovery value
+   */
+
+  public int getRecovery(){
+    return this.recovery;
+  }
+
+  /**
+   * sets the value of recovery
+   * @param value
+   *      is the new value of recovery, with a minimum of 0
+   */
+
+  public void setRecovery(int value){
+    this.recovery = (Math.max(value, 0));
   }
 }
