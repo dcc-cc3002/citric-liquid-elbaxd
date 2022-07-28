@@ -23,7 +23,7 @@ public class Turn {
     public void figthing(){state.figthing();}
     public void DefenseDodge(){state.DefenseDodge();}
     public void decided(){state.decided();}
-    public void endFigth(){state.endFigth();}
+    public void endFight(){state.endFight();}
     public void stayPanel(){state.stayPanel();}
     public void end(){state.end();}
     public void stayHome(){state.stayHome();}

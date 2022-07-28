@@ -20,7 +20,7 @@ public class State {
     void figthing(){return;}
     void DefenseDodge(){return;}
     void decided(){return;}
-    void endFigth(){return;}
+    void endFight(){return;}
     void stayPanel(){return;}
     void end(){return;}
     void stayHome(){return;}

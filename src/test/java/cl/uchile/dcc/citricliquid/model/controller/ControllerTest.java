@@ -244,7 +244,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void movePlayerTest(){
+    public void movevementTest(){
         Set<Player> test = new HashSet<>();
         gameController.turn.notKO();
         gameController.turn.playCard();

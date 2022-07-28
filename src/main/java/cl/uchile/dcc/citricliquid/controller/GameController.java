@@ -292,23 +292,16 @@ public class GameController {
         }
     }
 
-    /**
-     * delegates the job to the movement method to move the player
-     */
-
-    public void movePlayer() {
-        Player player = getTurnOwner();
-        int moves = player.roll();
-        AbstractPanel panel = player.getPanel();
-        movement(player, moves, panel);
-    }
 
     /**
      *  moves the player through the panels of the table.
      */
     public void movement(Player player,int moves,AbstractPanel panel){
+        if(moves!=0){
+
+        }
         Set<Player> playersOnPanel = panel.getPlayersOnPanel();
-        if(playersOnPanel.size() != 0 && player.getPanel() != panel) {
+        if (playersOnPanel.size() != 0 && player.getPanel() != panel) {
             boolean wantFight = wantToFight(playersOnPanel);
             if (wantFight) {
                 player.getPanel().removePlayerOnPanel(player);
@@ -317,7 +310,7 @@ public class GameController {
                 panel.activatedBy(player);
             }
         }
-        if(panel.getType() == PanelType.HOME && player.getPanel()!=panel){
+        if (panel.getType() == PanelType.HOME && player.getPanel()!=panel){
             if(panel.getOwner()==player) {
                 boolean wantHome = wantHome();
                 if (wantHome) {
@@ -342,16 +335,6 @@ public class GameController {
             panel.activatedBy(player);
             turn.path();
         }
-        if (moves == 0){
-            player.getPanel().removePlayerOnPanel(player);
-            player.setPanel(panel);
-            panel.addPlayerOnPanel(player);
-            panel.activatedBy(player);
-            turn.stayPanel();
-        }
-        moves =-1;
-        movement(player,moves,nextPanel);
-
     }
 
     /**
