@@ -299,7 +299,7 @@ public class ControllerTest {
         assertTrue(gameController.turn.isMove());
         gameController.movement(gameController.getTurnOwner(),moves-1, gameController.getTurnOwner().getPanel());
         assertTrue(gameController.turn.isPath());
-        gameController.turn.backToTrack();
+        gameController.turn.backToPath();
         assertTrue(gameController.turn.isMove());
         gameController.movement(gameController.getTurnOwner(),moves-1, gameController.getTurnOwner().getPanel());
         assertFalse(gameController.turn.isMove());

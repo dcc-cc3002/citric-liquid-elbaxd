@@ -17,7 +17,7 @@ public class Turn {
     public void playCard(){state.playCard();}
     public void move(){state.move();}
     public void path(){state.path();}
-    public void backToTrack(){state.backToTrack();}
+    public void backToPath(){state.backToPath();}
     public void fight(){state.fight();}
     public void noFight(){state.noFight();}
     public void figthing(){state.figthing();}

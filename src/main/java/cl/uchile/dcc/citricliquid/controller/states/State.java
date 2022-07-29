@@ -14,7 +14,7 @@ public class State {
     void playCard(){return;}
     void move(){return;}
     void path(){return;}
-    void backToTrack(){return;}
+    void backToPath(){return;}
     void fight(){return;}
     void noFight(){return;}
     void figthing(){return;}
