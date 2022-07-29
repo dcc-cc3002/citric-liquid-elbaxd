@@ -296,9 +296,7 @@ public class GameController {
      *  moves the player through the panels of the board.
      */
     public void movement(Player player,int moves,AbstractPanel panel){
-        if(moves!=0){
-
-        }
+        if(moves==0){return;}
         Set<Player> playersOnPanel = panel.getPlayersOnPanel();
         if (playersOnPanel.size() != 0 && player.getPanel() != panel) {
             boolean wantFight = wantToFight(playersOnPanel);

@@ -244,7 +244,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void movevementTest(){
+    public void movementTest(){
         Set<Player> test = new HashSet<>();
         gameController.turn.notKO();
         gameController.turn.playCard();
@@ -282,7 +282,8 @@ public class ControllerTest {
         gameController.turn.playCard();
         gameController.turn.move();
         assertTrue(gameController.turn.isMove());
-        gameController.movement(gameController.getTurnOwner(),);
+        int moves = 4;
+        gameController.movement(gameController.getTurnOwner(),moves, gameController.getTurnOwner().getPanel());
         assertTrue(gameController.turn.isFight());
         assertEquals(gameController.allPanels.get(1),gameController.getTurnOwner().getPanel());
         assertEquals(test,gameController.getTurnOwner().getPanel().getPlayersOnPanel());
@@ -290,17 +291,17 @@ public class ControllerTest {
         assertEquals(2,gameController.allPanels.get(1).getPlayersOnPanel().size());
         gameController.turn.noFight();
         assertTrue(gameController.turn.isMove());
-        gameController.movePlayer();
+        gameController.movement(gameController.getTurnOwner(),moves-1, gameController.getTurnOwner().getPanel());
         assertTrue(gameController.turn.isStayHome());
         assertEquals(gameController.allPanels.get(2),gameController.getTurnOwner().getPanel());
         assertEquals(1,gameController.allPanels.get(1).getPlayersOnPanel().size());
         gameController.turn.noHome();
         assertTrue(gameController.turn.isMove());
-        gameController.movePlayer();
+        gameController.movement(gameController.getTurnOwner(),moves-1, gameController.getTurnOwner().getPanel());
         assertTrue(gameController.turn.isPath());
         gameController.turn.backToTrack();
         assertTrue(gameController.turn.isMove());
-        gameController.movePlayer();
+        gameController.movement(gameController.getTurnOwner(),moves-1, gameController.getTurnOwner().getPanel());
         assertFalse(gameController.turn.isMove());
         assertFalse(gameController.turn.isPath());
         assertFalse(gameController.turn.isStayHome());
