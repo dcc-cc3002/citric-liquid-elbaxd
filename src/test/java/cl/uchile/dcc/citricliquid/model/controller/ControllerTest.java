@@ -282,7 +282,7 @@ public class ControllerTest {
         gameController.turn.playCard();
         gameController.turn.move();
         assertTrue(gameController.turn.isMove());
-        gameController.movePlayer();
+        gameController.movement(gameController.getTurnOwner(),);
         assertTrue(gameController.turn.isFight());
         assertEquals(gameController.allPanels.get(1),gameController.getTurnOwner().getPanel());
         assertEquals(test,gameController.getTurnOwner().getPanel().getPlayersOnPanel());

@@ -11,7 +11,7 @@ public class HomePanel extends AbstractPanel{
      *
      * @param type the type of the panel.
      *
-     * @param number the number of the panel in the table.
+     * @param number the number of the panel in the board.
      */
     public HomePanel(PanelType type,int number) {
         super(type);

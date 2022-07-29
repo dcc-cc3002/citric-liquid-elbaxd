@@ -173,7 +173,7 @@ public class GameController {
     /**
      * A panel ,or more than one, is add as a next panel of on other panel
      * @param actualPanel the panel that will have a next panel
-     * @param nextPanels the panel or panels that is adding next
+     * @param nextPanel the panel or panels that is adding next
      */
 
     public void setNextPanel(AbstractPanel actualPanel, AbstractPanel nextPanel){
@@ -242,7 +242,6 @@ public class GameController {
 
     public void drawCard(){
         turn.move();
-        movePlayer();
     }
 
     /**
@@ -294,7 +293,7 @@ public class GameController {
 
 
     /**
-     *  moves the player through the panels of the table.
+     *  moves the player through the panels of the board.
      */
     public void movement(Player player,int moves,AbstractPanel panel){
         if(moves!=0){
